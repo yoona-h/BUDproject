@@ -4,7 +4,7 @@
 PlayerSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 28
-  productGUID: 38d2395545d3ea743bada47c23a36117
+  productGUID: 68efa89934aeee647a5fa250616e5436
   AndroidProfiler: 0
   AndroidFilterTouchesWhenObscured: 0
   AndroidEnableSustainedPerformanceMode: 0
@@ -251,7 +251,7 @@ PlayerSettings:
   appleEnableProMotion: 0
   shaderPrecisionModel: 0
   clonedFromGUID: c19f32bac17ee4170b3bf8a6a0333fb9
-  templatePackageId: com.unity.template.universal-2d@6.0.0
+  templatePackageId: com.unity.template.universal-2d@5.1.0
   templateDefaultScene: Assets/Scenes/SampleScene.unity
   useCustomMainManifest: 0
   useCustomLauncherManifest: 0
@@ -568,12 +568,12 @@ PlayerSettings:
   webGLMemoryLinearGrowthStep: 16
   webGLMemoryGeometricGrowthStep: 0.2
   webGLMemoryGeometricGrowthCap: 96
+  webGLEnableWebGPU: 0
   webGLPowerPreference: 2
   webGLWebAssemblyTable: 0
   webGLWebAssemblyBigInt: 0
   webGLCloseOnQuit: 0
   webWasm2023: 0
-  webEnableSubmoduleStrippingCompatibility: 0
   scriptingDefineSymbols: {}
   additionalCompilerArguments: {}
   platformArchitecture: {}
@@ -671,12 +671,12 @@ PlayerSettings:
   qnxGraphicConfPath: 
   apiCompatibilityLevel: 6
   captureStartupLogs: {}
-  activeInputHandler: 1
+  activeInputHandler: 2
   windowsGamepadBackendHint: 0
-  cloudProjectId: 78a4947f-e363-45c4-a204-a478406bde45
+  cloudProjectId: 59db6452-2ead-4702-b16b-cef5b4d6eaf2
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: BUDproject 2025-04-28_22-21-46
+  projectName: BUDproject 2025-04-30_21-56-56
   organizationId: hywoaonnga
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
@@ -686,4 +686,3 @@ PlayerSettings:
   insecureHttpOption: 0
   androidVulkanDenyFilterList: []
   androidVulkanAllowFilterList: []
-  androidVulkanDeviceFilterListAsset: {fileID: 0}
