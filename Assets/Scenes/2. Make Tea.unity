@@ -1383,7 +1383,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1090643182
 Transform:
   m_ObjectHideFlags: 0
@@ -1611,7 +1611,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1281095887
 Transform:
   m_ObjectHideFlags: 0
@@ -1932,6 +1932,7 @@ MonoBehaviour:
   oxidationStage: {fileID: 1281095886}
   roastingStage: {fileID: 1442833775}
   brewingStage: {fileID: 2085606142}
+  canvas: {fileID: 115632933}
 --- !u!1 &1405433225
 GameObject:
   m_ObjectHideFlags: 0
@@ -7714,7 +7715,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2085606143
 Transform:
   m_ObjectHideFlags: 0

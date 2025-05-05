@@ -11,6 +11,7 @@ public class StageManager : MonoBehaviour
     [SerializeField] private GameObject oxidationStage;
     [SerializeField] private GameObject roastingStage;
     [SerializeField] private GameObject brewingStage;
+    [SerializeField] private Canvas canvas;
 
     public Color leafColor {get; private set;}
 
@@ -37,7 +38,7 @@ public class StageManager : MonoBehaviour
         {
             case TeaStep.Oxidation: oxidationStage.SetActive(true); break;
             case TeaStep.Roasting: roastingStage.SetActive(true); break;
-            case TeaStep.Brewing: brewingStage.SetActive(true); break;
+            case TeaStep.Brewing: brewingStage.SetActive(true); canvas.enabled = false; break;
         }
 
     }
