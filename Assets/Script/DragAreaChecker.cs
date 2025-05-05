@@ -21,6 +21,8 @@ public class DragAreaChecker : MonoBehaviour
 
     void Update()
     {
+        // TODO: 드래그 가능한 물체가 화면 범위 벗어나지 않도록 제한해야 함
+        
         if (!isDraggable) return;
 
         if (Input.GetMouseButtonDown(0))

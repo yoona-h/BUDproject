@@ -37,6 +37,7 @@ public class OxidationStage : MonoBehaviour
 
         dragAreaChecker = talisman.GetComponent<DragAreaChecker>();
         dragAreaChecker.OnExitArea += HandleExitArea;
+        dragAreaChecker.OnEnterArea += HandleEnterArea;
     }
 
     void Update()
@@ -46,6 +47,7 @@ public class OxidationStage : MonoBehaviour
             oxidationTime += Time.deltaTime;
             UpdateLeafColor();
             UpdateUIBar();
+            // TODO: 산화 중 이펙트 & 사운드
         }
     }
 
@@ -83,19 +85,27 @@ public class OxidationStage : MonoBehaviour
 
 
     /// <summary>
-    /// 부적을 치워서 산화가 중단되면 호출됨
+    /// 부적은 찻잎에 가져가는 순간에 호출됨
+    /// </summary>
+    private void HandleEnterArea()
+    {
+        Debug.Log("산화 시작");
+        // TODO: 산화 시작 이펙트 & 효과음
+    }
+
+
+    /// <summary>
+    /// 부적을 찻잎에서 치우는 순간에 호출됨
     /// </summary>
     private void HandleExitArea()
     {
+        Debug.Log($"산화 종료, 산화 시간: {oxidationTime:F2}초");
         isOxidizable = false;
-        StopOxidation();
-        talisman.SetActive(false);
-    }
-    private void StopOxidation()
-    {
         TeaData teaData = DetermineTeaByTime(oxidationTime);
-        // GameManager.Instance.SetOxidation(oxidationTime);
         UpdateTeaInfoUI(teaData);
+        // TODO: 부적 사라지는 이펙트 & 효과음
+        // GameManager.Instance.SetOxidation(oxidationTime);
+        talisman.SetActive(false);
     }
 
 
