@@ -1,10 +1,11 @@
 using UnityEngine;
 using System.Collections;
+using System;
 
 public class IngredientPourer : MonoBehaviour
 {
     [Header("대상 오브젝트")]
-    [SerializeField] private Transform gaiwan; // 개완 위치
+    [SerializeField] private Transform obj; // 기준 위치 오브젝트
     [SerializeField] private float moveDuration = 0.5f; // 애니메이션 시간
 
     private bool isPouring = false;
@@ -22,7 +23,7 @@ public class IngredientPourer : MonoBehaviour
         isPouring = true;
 
         Vector3 startPos = transform.position;
-        Vector3 endPos = gaiwan.position;
+        Vector3 endPos = obj.position;
 
         float elapsed = 0f;
         while (elapsed < moveDuration)
@@ -41,5 +42,6 @@ public class IngredientPourer : MonoBehaviour
     void OnPoured()
     {
         this.gameObject.SetActive(false);
+        StageManager.Instance.SetIngredientCnt();
     }
 }

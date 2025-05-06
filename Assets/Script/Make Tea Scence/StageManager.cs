@@ -1,14 +1,15 @@
+using System;
 using UnityEngine;
 
 public enum TeaStep { Harvest, /*Select,*/ Withering, Oxidation, Roasting, Brewing }
-//------------------------------------------¸Þ¸ð(±è°Ç¿ì) : ±Ùµ¥ Àç·á¼±ÅÃ°úÁ¤ÀÌ ¿Ö ÇÊ¿äÇÏÁö??? Â÷ ¿ì¸®´Â °úÁ¤ÀÌ¶û Àç·á¼±ÅÃÀº º°°³ÀÇ °úÁ¤ ¾Æ´Ñ°¡? 'Ãß°¡Àç·á'ÀÝ¾Æ...
+//------------------------------------------ï¿½Þ¸ï¿½(ï¿½ï¿½Ç¿ï¿½) : ï¿½Ùµï¿½ ï¿½ï¿½á¼±ï¿½Ã°ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ê¿ï¿½ï¿½ï¿½ï¿½ï¿½??? ï¿½ï¿½ ï¿½ì¸®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ì¶ï¿½ ï¿½ï¿½á¼±ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Æ´Ñ°ï¿½? 'ï¿½ß°ï¿½ï¿½ï¿½ï¿½'ï¿½Ý¾ï¿½...
 
 public class StageManager : MonoBehaviour
 {
     public static StageManager Instance;
 
     public TeaStep currentStep = TeaStep.Oxidation;
-    //ÃÊ±âÈ­¸¦ 3´Ü°èºÎÅÍ ½ÃÀÛ? Å×½ºÆ®ÇÏ·Á°í ±×·¨´ø°Å°ÚÁö???
+    //ï¿½Ê±ï¿½È­ï¿½ï¿½ 3ï¿½Ü°ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½? ï¿½×½ï¿½Æ®ï¿½Ï·ï¿½ï¿½ï¿½ ï¿½×·ï¿½ï¿½ï¿½ï¿½Å°ï¿½ï¿½ï¿½???
 
     [SerializeField] private GameObject harvestStage;
     //[SerializeField] private GameObject selectStage;
@@ -19,9 +20,11 @@ public class StageManager : MonoBehaviour
     [SerializeField] private Canvas canvas;
 
     public Color leafColor {get; private set;}
+    public int ingredientCnt{get; private set;} = 0;
+    public event Action Cntis3;
 
-    //------------------------------------------¸Þ¸ð(±è°Ç¿ì) : ÀÌ°Å´Â ½Ì±ÛÅæÆÐÅÏÀÎµ¥ ¿©±â¼­ ¾´ ÀÌÀ¯´Â??? DontDestroyed ¿ÀºêÁ§Æ®µµ ¾Æ´ÏÀÝ¾Æ.
-    //±×¸®°í instance¿¡ ÀÌ ½ºÅ©¸³Æ® ³Ö¾îµÎ¸éÀº ³ªÁß¿¡ ¼Õ´Ô ÇÑ ¸í ¹Þ°í³ª¼­ ´ÙÀ½ ¼Õ´Ô ¹ÞÀ» ¶§ ÀÌÀü Â÷ ¿ì¸®´Â °úÁ¤ÀÌ ³²¾ÆÀÖÀ» ¼öµµ ÀÖÀ½(static)... ±×³É ¾À ÃÊ±âÈ­ÇÒ ´ë °°ÀÌ ÃÊ±âÈ­ÇÏ´Â°Ô ÁÁÀ»µí
+    //------------------------------------------ï¿½Þ¸ï¿½(ï¿½ï¿½Ç¿ï¿½) : ï¿½Ì°Å´ï¿½ ï¿½Ì±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Îµï¿½ ï¿½ï¿½ï¿½â¼­ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½??? DontDestroyed ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½Æ´ï¿½ï¿½Ý¾ï¿½.
+    //ï¿½×¸ï¿½ï¿½ï¿½ instanceï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½Å©ï¿½ï¿½Æ® ï¿½Ö¾ï¿½Î¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ß¿ï¿½ ï¿½Õ´ï¿½ ï¿½ï¿½ ï¿½ï¿½ ï¿½Þ°ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Õ´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ì¸®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½(static)... ï¿½×³ï¿½ ï¿½ï¿½ ï¿½Ê±ï¿½È­ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ê±ï¿½È­ï¿½Ï´Â°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     private void Awake()
     {
         if (Instance == null) Instance = this;
@@ -62,6 +65,12 @@ public class StageManager : MonoBehaviour
     public void SetOxidizedLeafColor(Color leafColor)
     {
         this.leafColor = leafColor;
+    }
+
+    public void SetIngredientCnt()
+    {
+        ingredientCnt++;
+        if(ingredientCnt == 3) Cntis3?.Invoke();
     }
 }
 
