@@ -1,4 +1,7 @@
 using UnityEngine;
+using System;
+using System.Collections;
+using UnityEngine.UI;
 
 public enum TeaStep { Harvest, /*Select,*/ Withering, Oxidation, Roasting, Brewing }
 //------------------------------------------메모(김건우) : 근데 재료선택과정이 왜 필요하지??? 차 우리는 과정이랑 재료선택은 별개의 과정 아닌가? '추가재료'잖아...
@@ -7,16 +10,20 @@ public class StageManager : MonoBehaviour
 {
     public static StageManager Instance;
 
-    public TeaStep currentStep = TeaStep.Oxidation;
-    //초기화를 3단계부터 시작? 테스트하려고 그랬던거겠지???
+    public TeaStep currentStep;
 
+    [Header("Stages")]
     [SerializeField] private GameObject harvestStage;
     //[SerializeField] private GameObject selectStage;
     [SerializeField] private GameObject witheringStage;
     [SerializeField] private GameObject oxidationStage;
     [SerializeField] private GameObject roastingStage;
     [SerializeField] private GameObject brewingStage;
-    [SerializeField] private Canvas canvas;
+
+    [Header("UI")]
+    [SerializeField] private Button nextstage_button;
+    [SerializeField] private GameObject ChangeStep_Screen;
+    [SerializeField] private GameObject Mask_Screen;//화면전환 도중 클릭을 방지하기 위한 마스크 스크린
 
     public Color leafColor {get; private set;}
 
@@ -30,6 +37,8 @@ public class StageManager : MonoBehaviour
 
     private void Start()
     {
+        Mask_Screen.SetActive(false);
+        Reset_ChangeScreen();
         GoToStep(currentStep);
     }
 
@@ -45,23 +54,71 @@ public class StageManager : MonoBehaviour
 
         switch (step)
         {
+            case TeaStep.Harvest: harvestStage.SetActive(true); break;
+            case TeaStep.Withering: witheringStage.SetActive(true); break;
             case TeaStep.Oxidation: oxidationStage.SetActive(true); break;
             case TeaStep.Roasting: roastingStage.SetActive(true); break;
-            case TeaStep.Brewing: brewingStage.SetActive(true); canvas.enabled = false; break;
+            case TeaStep.Brewing: brewingStage.SetActive(true);
+                nextstage_button.gameObject.transform.GetChild(0).gameObject.SetActive(false);
+                nextstage_button.gameObject.transform.GetChild(1).gameObject.SetActive(true);
+                break;
         }
 
+    }
+
+    public void GotoNextStep_Button()
+    {
+        if (currentStep != TeaStep.Brewing)
+            StartCoroutine(ChangeStep());
+        else
+        {
+            //차 우리기 완료되었을 때 버튼 클릭시
+
+        }
     }
 
     public void GoToNextStep()
     {
         int next = (int)currentStep + 1;
-        if (next < System.Enum.GetValues(typeof(TeaStep)).Length)
+        if (next < Enum.GetValues(typeof(TeaStep)).Length)
             GoToStep((TeaStep)next);
     }
 
     public void SetOxidizedLeafColor(Color leafColor)
     {
         this.leafColor = leafColor;
+    }
+
+
+    private void Reset_ChangeScreen()
+    {
+        //ChangeStep_Screen.SetActive(false);
+        ChangeStep_Screen.transform.localPosition = new Vector3(2200, 0, 0);
+    }
+    private IEnumerator ChangeStep()
+    {
+        Vector3 movespeed = new Vector3(4000*Time.deltaTime, 0, 0);
+
+        Mask_Screen.SetActive(true);
+
+        while (ChangeStep_Screen.transform.localPosition.x > 0)
+        {
+            ChangeStep_Screen.transform.localPosition -= movespeed;
+            yield return null;
+        }
+        
+        GoToNextStep();
+        
+        while (ChangeStep_Screen.transform.localPosition.x > -2200)
+        {
+            ChangeStep_Screen.transform.localPosition -= movespeed;
+            yield return null;
+        }
+
+        Mask_Screen.SetActive(false);
+        Reset_ChangeScreen();
+        
+        yield break;
     }
 }
 
