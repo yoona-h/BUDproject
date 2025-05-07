@@ -13,22 +13,18 @@ public class MakeTeaManager : MonoBehaviour
     public TeaStep currentStep;
 
     [Header("Stages")]
-    [SerializeField] private GameObject harvestStage;
-    //[SerializeField] private GameObject selectStage;
-    [SerializeField] private GameObject witheringStage;
-    [SerializeField] private GameObject oxidationStage;
-    [SerializeField] private GameObject roastingStage;
-    [SerializeField] private GameObject brewingStage;
+    [SerializeField] private GameObject harvestStep;
+    [SerializeField] private GameObject witheringStep;
+    [SerializeField] private GameObject oxidationStep;
+    [SerializeField] private GameObject roastingStep;
+    [SerializeField] private GameObject brewingStep;
 
     [Header("UI")]
     [SerializeField] private Button nextstage_button;
     [SerializeField] private GameObject ChangeStep_Screen;
-    [SerializeField] private GameObject Mask_Screen;//ȭ����ȯ ���� Ŭ���� �����ϱ� ���� ����ũ ��ũ��
-
+    [SerializeField] private GameObject Mask_Screen;
     public Color leafColor {get; private set;}
 
-    //------------------------------------------�޸�(��ǿ�) : �̰Ŵ� �̱��������ε� ���⼭ �� ������??? DontDestroyed ������Ʈ�� �ƴ��ݾ�.
-    //�׸��� instance�� �� ��ũ��Ʈ �־�θ��� ���߿� �մ� �� �� �ް����� ���� �մ� ���� �� ���� �� �츮�� ������ �������� ���� ����(static)... �׳� �� �ʱ�ȭ�� �� ���� �ʱ�ȭ�ϴ°� ������
     private void Awake()
     {
         if (Instance == null) Instance = this;
@@ -46,19 +42,19 @@ public class MakeTeaManager : MonoBehaviour
     {
         currentStep = step;
 
-        harvestStage.SetActive(false);
-        witheringStage.SetActive(false);
-        oxidationStage.SetActive(false);
-        roastingStage.SetActive(false);
-        brewingStage.SetActive(false);
+        harvestStep.SetActive(false);
+        witheringStep.SetActive(false);
+        oxidationStep.SetActive(false);
+        roastingStep.SetActive(false);
+        brewingStep.SetActive(false);
 
         switch (step)
         {
-            case TeaStep.Harvest: harvestStage.SetActive(true); break;
-            case TeaStep.Withering: witheringStage.SetActive(true); break;
-            case TeaStep.Oxidation: oxidationStage.SetActive(true); break;
-            case TeaStep.Roasting: roastingStage.SetActive(true); break;
-            case TeaStep.Brewing: brewingStage.SetActive(true);
+            case TeaStep.Harvest: harvestStep.SetActive(true); break;
+            case TeaStep.Withering: witheringStep.SetActive(true); break;
+            case TeaStep.Oxidation: oxidationStep.SetActive(true); break;
+            case TeaStep.Roasting: roastingStep.SetActive(true); break;
+            case TeaStep.Brewing: brewingStep.SetActive(true);
                 nextstage_button.gameObject.transform.GetChild(0).gameObject.SetActive(false);
                 nextstage_button.gameObject.transform.GetChild(1).gameObject.SetActive(true);
                 break;
@@ -72,7 +68,6 @@ public class MakeTeaManager : MonoBehaviour
             StartCoroutine(ChangeStep());
         else
         {
-            //�� �츮�� �Ϸ�Ǿ��� �� ��ư Ŭ����
 
         }
     }
