@@ -1637,8 +1637,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -2060656145
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 0.29803923, g: 0.8, b: 0.29803923, a: 1}
@@ -1840,7 +1840,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2f90488ed97a484e8d93e85d1d9678c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  obj: {fileID: 0}
+  obj: {fileID: 783613990}
   moveDuration: 0.5
 --- !u!70 &1177618633
 CapsuleCollider2D:
@@ -2282,7 +2282,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2f90488ed97a484e8d93e85d1d9678c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  obj: {fileID: 0}
+  obj: {fileID: 783613990}
   moveDuration: 0.5
 --- !u!70 &1370890525
 CapsuleCollider2D:
@@ -2452,7 +2452,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 198a528801678fb418809f22eca27113, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentStep: 0
+  currentStep: 4
   harvestStage: {fileID: 239775304}
   witheringStage: {fileID: 1630497911}
   oxidationStage: {fileID: 1281095886}
@@ -2562,7 +2562,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2f90488ed97a484e8d93e85d1d9678c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  obj: {fileID: 0}
+  obj: {fileID: 783613990}
   moveDuration: 0.5
 --- !u!70 &1405433229
 CapsuleCollider2D:
@@ -8275,7 +8275,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2085606143
 Transform:
   m_ObjectHideFlags: 0

@@ -26,7 +26,7 @@ public class OxidationStage : LeafProcessingStage
 
         talisman.SetActive(false);
 
-        StageManager.Instance.SetOxidizedLeafColor(leafSprite.color);
+        MakeTeaManager.Instance.SetOxidizedLeafColor(leafSprite.color);
     }
 
     private TeaData GetOxidationResult(float t)
