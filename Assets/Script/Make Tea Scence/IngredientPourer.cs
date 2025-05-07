@@ -42,6 +42,6 @@ public class IngredientPourer : MonoBehaviour
     void OnPoured()
     {
         this.gameObject.SetActive(false);
-        StageManager.Instance.SetIngredientCnt();
+        // StageManager.Instance.SetIngredientCnt();
     }
 }

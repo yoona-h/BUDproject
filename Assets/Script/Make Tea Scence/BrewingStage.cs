@@ -8,12 +8,12 @@ public class BrewingStage : MonoBehaviour
 
     [SerializeField] private float xPos;
 
-    
+    private int ingredientCnt;
 
     void Start()
     {
         teaPot.SetActive(false);
-        StageManager.Instance.Cntis3 += TeaPotAni;
+        //StageManager.Instance.Cntis3 += TeaPotAni;
     }
 
     void Update()
@@ -28,5 +28,10 @@ public class BrewingStage : MonoBehaviour
         gaiwan.transform.position += new Vector3(xPos, 0, 0);
         // TODO: 개완 흔들기 애니메이션
         gaiwan.GetComponent<IngredientPourer>().enabled = true;
+    }
+
+    public void SetIngredientCnt()
+    {
+        ingredientCnt++;
     }
 }
