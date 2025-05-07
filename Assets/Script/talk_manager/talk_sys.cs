@@ -1,9 +1,10 @@
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class talk_sys : MonoBehaviour
 {
-    public Text talktext;
+    public TMP_Text talktext;
     public Image talk_box;
     public string[] lines;
     private int index = 0;
