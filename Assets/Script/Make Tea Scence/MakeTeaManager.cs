@@ -6,9 +6,9 @@ using UnityEngine.UI;
 public enum TeaStep { Harvest, /*Select,*/ Withering, Oxidation, Roasting, Brewing }
 //------------------------------------------�޸�(��ǿ�) : �ٵ� ��ἱ�ð����� �� �ʿ�����??? �� �츮�� �����̶� ��ἱ���� ������ ���� �ƴѰ�? '�߰����'�ݾ�...
 
-public class StageManager : MonoBehaviour
+public class MakeTeaManager : MonoBehaviour
 {
-    public static StageManager Instance;
+    public static MakeTeaManager Instance;
 
     public TeaStep currentStep;
 

@@ -2419,7 +2419,7 @@ GameObject:
   - component: {fileID: 1403377226}
   - component: {fileID: 1403377227}
   m_Layer: 0
-  m_Name: Sence Managers
+  m_Name: MakeTea Managers
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2458,9 +2458,9 @@ MonoBehaviour:
   oxidationStage: {fileID: 1281095886}
   roastingStage: {fileID: 1442833775}
   brewingStage: {fileID: 2085606142}
-  nextstage_button: {fileID: 0}
-  ChangeStep_Screen: {fileID: 0}
-  Mask_Screen: {fileID: 0}
+  nextstage_button: {fileID: 349610880}
+  ChangeStep_Screen: {fileID: 29080997}
+  Mask_Screen: {fileID: 405953164}
 --- !u!1 &1405433225
 GameObject:
   m_ObjectHideFlags: 0
