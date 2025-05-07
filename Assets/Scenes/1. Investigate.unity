@@ -497,9 +497,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fc65d9d24343cc46bfb48e99f6b9ad4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  talktext: {fileID: 0}
-  talk_box: {fileID: 0}
-  lines: []
+  talktext: {fileID: 2030465229}
+  talk_box: {fileID: 1685520567}
+  lines:
+  - "\u3137\u3142\u3148\u3137"
+  - "\u3142\u3148\u3137\u3142"
+  - "\u3137\u3142\u3148\u3142\u3148"
 --- !u!4 &1845565340
 Transform:
   m_ObjectHideFlags: 0
@@ -572,10 +575,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: New Text
+  m_text: "\u3134\u3147\u3134\u3141\u3148\u3147\u3141\u3134\u3147\u3148\u3141\u3139\u3134\u3139"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 117d2c952b1a79f46a397bdb50e7f68b, type: 2}
+  m_sharedMaterial: {fileID: 6875990315024865706, guid: 117d2c952b1a79f46a397bdb50e7f68b, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
