@@ -64,7 +64,7 @@ public class BackgroundSwitcher : MonoBehaviour
         }
         else if(direction.Equals("up"))
         {
-            ChangeBackground(TeaStep.WitheringAndOxidation);
+            ChangeBackground(TeaStep.Firing);
         }
         else
         {
