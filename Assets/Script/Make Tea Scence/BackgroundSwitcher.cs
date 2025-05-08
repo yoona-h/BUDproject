@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 /// <summary>
-/// 배경 변화와 해당 배경에 필요한 오브젝트의 셋팅을 처리하는 클래스
+/// 화살표 클릭시 배경 전환을 담당하는 클래스
 /// </summary>
 public class BackgroundSwitcher : MonoBehaviour
 {
@@ -13,12 +13,6 @@ public class BackgroundSwitcher : MonoBehaviour
     public GameObject storageBG; // 재료 창고
     public GameObject furnaceBG; // 아궁이
     public GameObject barBG; // 손님에게 차 제공할 바
-
-    [Header("Objects")]
-    public GameObject pluckingObjs;
-    public GameObject witheringAndOxidation;
-    public GameObject firingObjs;
-    public GameObject brewingObjs;
 
     [Header("Arrows")]
     public GameObject leftArrow;
@@ -36,6 +30,9 @@ public class BackgroundSwitcher : MonoBehaviour
         ChangeBackground(makeTeaManager.currentStep);
     }
 
+    /// <summary>
+    /// 클릭한 화살표 화면 따라 배경 전환
+    /// </summary>
     public void OnArrowClick(string direction)
     {
         TeaStep teaStep = makeTeaManager.currentStep;
@@ -72,6 +69,9 @@ public class BackgroundSwitcher : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// teaStep으로 배경 전환
+    /// </summary>
     void ChangeBackground(TeaStep teaStep)
     {
         // 모든 항목 끄기
@@ -80,37 +80,32 @@ public class BackgroundSwitcher : MonoBehaviour
         furnaceBG.SetActive(false);
         barBG.SetActive(false);
 
-        pluckingObjs.SetActive(false);
-        witheringAndOxidation.SetActive(false);
-        firingObjs.SetActive(false);
-        brewingObjs.SetActive(false);
-
         leftArrow.SetActive(false);
         rightArrow.SetActive(false);
         upArrow.SetActive(false);
         downArrow.SetActive(false);
 
-        // 현재 차 만들기 단계 따라 배경과 오브젝트 켜기
+        // 차 만들기 단계 따라 배경과 화살표 켜기
         switch(teaStep)
         {
             case TeaStep.Plucking: 
-                storageBG.SetActive(true); pluckingObjs.SetActive(true); 
+                storageBG.SetActive(true);
                 rightArrow.SetActive(true);
                 break;
             case TeaStep.WitheringAndOxidation: 
-                workbenchBG.SetActive(true); witheringAndOxidation.SetActive(true);
+                workbenchBG.SetActive(true);
                 leftArrow.SetActive(true); rightArrow.SetActive(true); 
                 break;
             case TeaStep.Firing: 
-                furnaceBG.SetActive(true); firingObjs.SetActive(true); 
+                furnaceBG.SetActive(true);
                 leftArrow.SetActive(true); downArrow.SetActive(true);
                 break;
             case TeaStep.Brewing: 
-                barBG.SetActive(true); brewingObjs.SetActive(true); 
+                barBG.SetActive(true);
                 upArrow.SetActive(true);
                 break;
         }
 
-        makeTeaManager.currentStep = teaStep;
+        makeTeaManager.ChangeStep(teaStep);
     }
 }

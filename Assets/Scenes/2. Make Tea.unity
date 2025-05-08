@@ -3066,9 +3066,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentStep: 0
-  nextStep_button: {fileID: 349610880}
+  brewingButton: {fileID: 0}
   ChangeStep_Screen: {fileID: 29080997}
   Mask_Screen: {fileID: 405953164}
+  pluckingObjs: {fileID: 239775304}
+  witheringAndOxidation: {fileID: 1281095886}
+  firingObjs: {fileID: 1442833775}
+  brewingObjs: {fileID: 2085606142}
+  leafColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &1403377228
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3085,10 +3090,6 @@ MonoBehaviour:
   storageBG: {fileID: 604213881}
   furnaceBG: {fileID: 1681834809}
   barBG: {fileID: 907291463}
-  pluckingObjs: {fileID: 239775304}
-  witheringAndOxidation: {fileID: 1281095886}
-  firingObjs: {fileID: 1442833775}
-  brewingObjs: {fileID: 2085606142}
   leftArrow: {fileID: 2069362044}
   rightArrow: {fileID: 700274714}
   upArrow: {fileID: 1283101610}

@@ -10,32 +10,57 @@ public class MakeTeaManager : MonoBehaviour
     public TeaStep currentStep;
     
     [Header("UI")]
-    [SerializeField] private Button nextStep_button;
-    [SerializeField] private GameObject ChangeStep_Screen;
-    [SerializeField] private GameObject Mask_Screen;
-    public Color leafColor {get; private set;}
+    public Button brewingButton;
+    public GameObject ChangeStep_Screen;
+    public GameObject Mask_Screen;
 
-    private void Start()
+    [Header("Step Objects")]
+    public GameObject pluckingObjs;
+    public GameObject witheringAndOxidation;
+    public GameObject firingObjs;
+    public GameObject brewingObjs;
+
+    public Color leafColor;
+
+    void Start()
     {
+        ChangeStep(currentStep);
         Mask_Screen.SetActive(false);
         Reset_ChangeScreen();
-        // ChangeLocation(currentStep);
     }
 
-    public void SetOxidizedLeafColor(Color leafColor)
+    public void ChangeStep(TeaStep teaStep)
     {
-        this.leafColor = leafColor;
-    }
+        currentStep = teaStep;
 
+        pluckingObjs.SetActive(false);
+        witheringAndOxidation.SetActive(false);
+        firingObjs.SetActive(false);
+        brewingObjs.SetActive(false);
+
+        // 차 만들기 단계 따라 오브젝트 켜기
+        switch(teaStep)
+        {
+            case TeaStep.Plucking: 
+                pluckingObjs.SetActive(true); break;
+            case TeaStep.WitheringAndOxidation: 
+                witheringAndOxidation.SetActive(true); break;
+            case TeaStep.Firing: 
+                firingObjs.SetActive(true); break;
+            case TeaStep.Brewing: 
+                brewingObjs.SetActive(true); break;
+        }
+    }
 
     private void Reset_ChangeScreen()
     {
         //ChangeStep_Screen.SetActive(false);
         ChangeStep_Screen.transform.localPosition = new Vector3(2200, 0, 0);
     }
-    public IEnumerator ChangeStep(TeaStep teaStep)
+
+    public IEnumerator ChangeStep()
     {
-        currentStep = teaStep;
+        
 
         Vector3 movespeed = new Vector3(4000*Time.deltaTime, 0, 0);
 
@@ -60,5 +85,7 @@ public class MakeTeaManager : MonoBehaviour
         
         yield break;
     }
+
+
 }
 
