@@ -13,7 +13,7 @@ public class RoastingStage : LeafProcessingStage
     void Start()
     {
         leafPos = leafSprite.transform.position;
-        baseColor = MakeTeaManager.Instance.leafColor;
+        //baseColor = MakeTeaManager.Instance.leafColor;
         leafSprite.color = baseColor;
 
         dragAreaChecker = leafSprite.GetComponent<DragAreaChecker>();
@@ -46,6 +46,6 @@ public class RoastingStage : LeafProcessingStage
         dragAreaChecker.enabled = false;
         leafSprite.transform.position = leafPos;
         Color finalRoastingColor = leafSprite.color;
-        MakeTeaManager.Instance.SetOxidizedLeafColor(finalRoastingColor);
+        //MakeTeaManager.Instance.SetOxidizedLeafColor(finalRoastingColor);
     }
 }
