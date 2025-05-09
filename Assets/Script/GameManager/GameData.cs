@@ -17,6 +17,8 @@ public class GameData : MonoBehaviour
     public static int talk_branch;//대화 분기
     public static List<bool> ending = new List<bool>();//엔딩 수집 여부
 
+    public static bool FirstGame;
+
 
 
     public static GameData Instance;
