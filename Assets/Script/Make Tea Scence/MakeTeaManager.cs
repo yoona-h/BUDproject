@@ -31,6 +31,10 @@ public class MakeTeaManager : MonoBehaviour
     [Header("Tea Info")]
     public Color leafColor;
     public Dictionary<Stats, int> teaEffectDict;
+
+    [Header("차 만들기 정보")]
+    public float oxidationTime = 0f;
+    public float firingTime = 0f;
     
     void Start()
     {

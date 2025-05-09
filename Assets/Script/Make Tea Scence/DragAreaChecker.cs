@@ -1,32 +1,55 @@
 using UnityEngine;
 using System;
+using UnityEngine.Timeline;
+using System.Collections;
 
+/// <summary>
+/// 드래그 가능한 물체가 대상 영역 안에 있는지 체크
+/// </summary>
 public class DragAreaChecker : MonoBehaviour
 {
     [Header("대상 영역 (Collider2D)")]
-    [SerializeField] private Collider2D targetArea;
+    [SerializeField]Collider2D targetArea;
 
     [Header("드래그 가능 여부")]
-    [SerializeField] private bool isDraggable = true;
+    [SerializeField]bool isDraggable = true;
 
     public bool IsInTargetArea { get; private set; }
 
     public event Action OnEnterArea;
     public event Action OnExitArea;
 
-    private bool isDragging = false;
-    private Vector3 offset;
+    [Header("제자리로 돌아가는 시간")]
+    public float duration = 0.3f;
+
+    bool isDragging = false;
+    Vector3 offset;
+    Vector2 basePos;
     
-    private bool wasInTargetArea = false;
+    //bool wasInTargetArea = false;
+
+    bool isInArea;
+
+    void Start()
+    {
+        basePos = transform.position;
+    }
 
     void Update()
-    {
-        // TODO: 드래그 가능한 물체가 화면 범위 벗어나지 않도록 제한해야 함
-        
+    {        
         if (!isDraggable) return;
+
+        isInArea = targetArea.bounds.Contains(transform.position);
 
         if (Input.GetMouseButtonDown(0))
         {
+            if(isInArea)
+            {
+                OnExitArea?.Invoke();
+                StartCoroutine(MoveToBasePos());
+                return;
+            }
+
             Vector2 mouseWorld = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             if (GetComponent<Collider2D>().OverlapPoint(mouseWorld))
             {
@@ -39,8 +62,6 @@ public class DragAreaChecker : MonoBehaviour
         {
             Vector2 mouseWorld = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             transform.position = mouseWorld + (Vector2)offset;
-
-            CheckAreaState();
         }
 
         if (Input.GetMouseButtonUp(0))
@@ -52,6 +73,39 @@ public class DragAreaChecker : MonoBehaviour
 
     void CheckAreaState()
     {
+        if(isInArea)
+        {
+            OnEnterArea?.Invoke();
+        }
+        else
+        {
+            OnExitArea?.Invoke();
+            StartCoroutine(MoveToBasePos());
+        }
+    }
+
+    IEnumerator MoveToBasePos()
+    {
+        Vector2 startPosition = transform.position;  // 현재 물체의 위치
+        float elapsedTime = 0f;
+
+        isDraggable = false; // 이동하는 동안 클릭 막음
+
+        // 지정된 시간이 경과할 때까지 이동
+        while (elapsedTime < duration)
+        {
+            transform.position = Vector2.Lerp(startPosition, basePos, elapsedTime / duration);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+        
+        // 최종 목표 위치로 정확하게 설정
+        transform.position = basePos;
+        isDraggable = true;
+    }
+
+    /*void CheckAreaState()
+    {
         bool isNowInArea = targetArea.bounds.Contains(transform.position);
 
         if (!wasInTargetArea && isNowInArea)
@@ -61,9 +115,10 @@ public class DragAreaChecker : MonoBehaviour
         else if (wasInTargetArea && !isNowInArea)
         {
             OnExitArea?.Invoke(); // 이탈 시 호출
+            transform.position = basePos;
         }
 
         IsInTargetArea = isNowInArea;
         wasInTargetArea = isNowInArea;
-    }
+    }*/
 }

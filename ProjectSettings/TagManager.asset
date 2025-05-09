@@ -47,5 +47,8 @@ TagManager:
   - name: ForeGround
     uniqueID: 2234311151
     locked: 0
+  - name: InteractiveObject
+    uniqueID: 177966035
+    locked: 0
   m_RenderingLayers:
   - Default
