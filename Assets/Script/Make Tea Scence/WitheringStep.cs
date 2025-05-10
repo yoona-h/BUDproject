@@ -25,17 +25,21 @@ public class WitheringStep : MonoBehaviour
     [SerializeField] GameObject[] leafs;
     [SerializeField] GameObject arrows; // 시들리기 완료 전까진 다른 장소로 이동 불가
     [SerializeField] MakeTeaManager makeTeaManager;
+    [SerializeField] Collider2D ingredientCollider;
     
     int currentClick;
 
     void OnEnable()
     {
-        currentClick = maxClick;
-        leafs[0].SetActive(true);
-        leafs[1].SetActive(false);
-        arrows.SetActive(false);
-
-        StartCoroutine(MoveTeaDry(startPos + new Vector2(0,offset), 0));
+        if(!makeTeaManager.isPluckingAndWitheringFin)
+        {
+            currentClick = maxClick;
+            leafs[0].SetActive(true);
+            leafs[1].SetActive(false);
+            arrows.SetActive(false);
+            ingredientCollider.enabled = false;
+            StartCoroutine(MoveTeaDry(startPos + new Vector2(0,offset), 0));
+        }
     }
 
     void OnDisable()
@@ -60,7 +64,9 @@ public class WitheringStep : MonoBehaviour
                 leafs[0].SetActive(false);
                 leafs[1].SetActive(true); // 마르고 부서진 찻잎 스프라이트
                 makeTeaManager.isPluckingAndWitheringFin = true;
+                
                 StartCoroutine(MoveTeaDry(startPos, waitTime));
+                ingredientCollider.enabled = true;
             }
         }
     }
