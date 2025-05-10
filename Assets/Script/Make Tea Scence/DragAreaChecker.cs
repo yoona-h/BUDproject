@@ -39,8 +39,6 @@ public class DragAreaChecker : MonoBehaviour
     {
         if (!isDraggable) return;
 
-        // TODO: 
-
         isInArea = targetArea.bounds.Contains(transform.position);
 
         if (Input.GetMouseButtonDown(0))
@@ -88,12 +86,11 @@ public class DragAreaChecker : MonoBehaviour
 
     IEnumerator MoveToBasePos()
     {
-        Vector2 startPosition = transform.position;  // 현재 물체의 위치
+        Vector2 startPosition = transform.position;
         float elapsedTime = 0f;
 
-        isDraggable = false; // 이동하는 동안 클릭 막음
+        isDraggable = false;
 
-        // 지정된 시간이 경과할 때까지 이동
         while (elapsedTime < duration)
         {
             transform.position = Vector2.Lerp(startPosition, basePos, elapsedTime / duration);
@@ -101,7 +98,6 @@ public class DragAreaChecker : MonoBehaviour
             yield return null;
         }
         
-        // 최종 목표 위치로 정확하게 설정
         transform.position = basePos;
         isDraggable = true;
     }

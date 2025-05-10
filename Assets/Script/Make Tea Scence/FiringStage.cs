@@ -3,7 +3,7 @@ using UnityEngine.UI;
 using TMPro;
 
 /// <summary>
-/// 덖가 단계 컨트롤하는 클래스
+/// 덖기 단계 컨트롤하는 클래스
 /// </summary>
 public class FiringStage : MonoBehaviour
 {   
@@ -22,23 +22,23 @@ public class FiringStage : MonoBehaviour
 
     float processTime = 0f;
     bool isProcessing = false;
-    Vector2 leafPos;
-
-    void OnEnable()
-    {
-        // 잎 색깔 설정
-        leafPos = leafSprite.transform.position;
-        leafSprite.color = makeTeaManager.leafColor;
-
-        if (smokeEffect != null && smokeEffect.isPlaying)
-            smokeEffect.Stop();
-    }
 
     void Start()
     {
         dragAreaChecker = leafSprite.GetComponent<DragAreaChecker>();
         dragAreaChecker.OnEnterArea += StartProcessing;
         dragAreaChecker.OnExitArea += StopProcessing;
+    }
+
+    void OnEnable()
+    {
+        leafSprite.gameObject.SetActive(makeTeaManager.isPluckingAndWitheringFin);
+
+        // 잎 색깔 설정
+        leafSprite.color = makeTeaManager.leafColor;
+
+        if (smokeEffect != null && smokeEffect.isPlaying)
+            smokeEffect.Stop();
     }
 
     void Update()
@@ -53,27 +53,25 @@ public class FiringStage : MonoBehaviour
     void StartProcessing()
     {
         isProcessing = true;
-
+        progressSlider.gameObject.SetActive(true);
         if (smokeEffect != null && !smokeEffect.isPlaying)
             smokeEffect.Play();
 
-        makeTeaManager.firingTime = processTime;
     }
 
     void StopProcessing()
     {
         isProcessing = false;
-
-        Debug.Log($"덖기 종료, 시간: {processTime:F2}s");
-
-        // DisplayTeaInfo("이름", "추가된 효과", "설명");
+        progressSlider.gameObject.SetActive(false);
 
         if (smokeEffect != null && smokeEffect.isPlaying)
             smokeEffect.Stop();
 
-        //dragAreaChecker.enabled = false;
-        //leafSprite.transform.position = leafPos;
-        Color finalRoastingColor = leafSprite.color;
+        if(!processTime.Equals(0))
+        {
+            makeTeaManager.isFiringFin = true;
+            makeTeaManager.firingTime = processTime;
+        }
     }
 
     void UpdateProgressBar()

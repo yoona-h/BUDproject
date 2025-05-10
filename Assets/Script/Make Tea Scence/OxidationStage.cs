@@ -21,6 +21,8 @@ public class OxidationStage : MonoBehaviour
     [SerializeField] Color[] leafColors;
     [Header("부적")]
     [SerializeField] GameObject talisman;
+
+    /*
     [Header("Tea Dry 애니메이션 관련")]
     [SerializeField] GameObject teaDry;
     [Tooltip("시작 위치")]
@@ -29,6 +31,7 @@ public class OxidationStage : MonoBehaviour
     [SerializeField] float offset = 1f;
     [Tooltip("움직일 시간 (초)")]
     [SerializeField] float teaDryMoveTime = 0.3f;
+    */
     
 
     [SerializeField] MakeTeaManager makeTeaManager;
@@ -48,16 +51,20 @@ public class OxidationStage : MonoBehaviour
 
     void OnEnable()
     {
-        teaDry.SetActive(makeTeaManager.isPluckingAndWitheringFin);
+        leafSprite.gameObject.SetActive(makeTeaManager.isPluckingAndWitheringFin);
+        talisman.SetActive(makeTeaManager.isPluckingAndWitheringFin);
+
+        /*teaDry.SetActive(makeTeaManager.isPluckingAndWitheringFin);
         if(makeTeaManager.isPluckingAndWitheringFin)
         {
             StartCoroutine(MoveTeaDry(new Vector2(teaDryPos.x, teaDryPos.y + offset)));
         }
+        */
     }
 
     void OnDisable()
     {
-        teaDry.transform.position = teaDryPos;
+        // teaDry.transform.position = teaDryPos;
     }
 
     void Update()
@@ -72,23 +79,24 @@ public class OxidationStage : MonoBehaviour
 
     void StartProcessing()
     {
-        isProcessing = true;
+        if(!makeTeaManager.isFiringFin)
+        {
+            isProcessing = true;
+            progressSlider.gameObject.SetActive(true);
+        }
     }
 
     void StopProcessing()
     {
         isProcessing = false;
+        progressSlider.gameObject.SetActive(false);
 
-        Debug.Log($"산화 종료, 시간: {processTime:F2}s");
-
-        //TeaData tea = GetOxidationResult(processTime);
-        //DisplayTeaInfo(tea.name, tea.effect, tea.description);
-
-        //talisman.SetActive(false);
-        //talisman.transform.position = talismanPos;
         makeTeaManager.leafColor = leafSprite.color;
-
-        //MakeTeaManager.Instance.SetOxidizedLeafColor(leafSprite.color);
+        if(!processTime.Equals(0))
+        {
+            makeTeaManager.isOxidationFin = true;
+            makeTeaManager.oxidationTime = processTime;
+        }
     }
 
     /*TeaData GetOxidationResult(float t)
@@ -129,6 +137,7 @@ public class OxidationStage : MonoBehaviour
         }
     }
 
+    /*
     IEnumerator MoveTeaDry(Vector2 endPos)
     {
         Vector2 currentPos = teaDry.transform.position;
@@ -143,4 +152,5 @@ public class OxidationStage : MonoBehaviour
 
         teaDry.transform.position = endPos;
     }
+    */
 }
