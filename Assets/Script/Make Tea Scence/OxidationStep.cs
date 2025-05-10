@@ -1,12 +1,11 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using System.Collections;
 
 /// <summary>
 /// 시들리기, 산화 단계 컨트롤하는 클래스
 /// </summary>
-public class OxidationStage : MonoBehaviour
+public class OxidationStep : MonoBehaviour
 {
     [Header("찻잎")]
     [SerializeField] SpriteRenderer leafSprite;
@@ -21,18 +20,6 @@ public class OxidationStage : MonoBehaviour
     [SerializeField] Color[] leafColors;
     [Header("부적")]
     [SerializeField] GameObject talisman;
-
-    /*
-    [Header("Tea Dry 애니메이션 관련")]
-    [SerializeField] GameObject teaDry;
-    [Tooltip("시작 위치")]
-    [SerializeField] Vector2 teaDryPos;
-    [Tooltip("움직일 y축 offset")]
-    [SerializeField] float offset = 1f;
-    [Tooltip("움직일 시간 (초)")]
-    [SerializeField] float teaDryMoveTime = 0.3f;
-    */
-    
 
     [SerializeField] MakeTeaManager makeTeaManager;
     DragAreaChecker dragChecker;
@@ -53,18 +40,6 @@ public class OxidationStage : MonoBehaviour
     {
         leafSprite.gameObject.SetActive(makeTeaManager.isPluckingAndWitheringFin);
         talisman.SetActive(makeTeaManager.isPluckingAndWitheringFin);
-
-        /*teaDry.SetActive(makeTeaManager.isPluckingAndWitheringFin);
-        if(makeTeaManager.isPluckingAndWitheringFin)
-        {
-            StartCoroutine(MoveTeaDry(new Vector2(teaDryPos.x, teaDryPos.y + offset)));
-        }
-        */
-    }
-
-    void OnDisable()
-    {
-        // teaDry.transform.position = teaDryPos;
     }
 
     void Update()
@@ -136,21 +111,4 @@ public class OxidationStage : MonoBehaviour
             progressSlider.value = Mathf.Clamp01(processTime / max);
         }
     }
-
-    /*
-    IEnumerator MoveTeaDry(Vector2 endPos)
-    {
-        Vector2 currentPos = teaDry.transform.position;
-        float currentTime = 0f;
-
-        while(currentTime < teaDryMoveTime)
-        {
-            teaDry.transform.position = Vector2.Lerp(currentPos, endPos, currentTime/teaDryMoveTime);
-            currentTime += Time.deltaTime;
-            yield return null;
-        }
-
-        teaDry.transform.position = endPos;
-    }
-    */
 }

@@ -5,7 +5,7 @@ using TMPro;
 /// <summary>
 /// 덖기 단계 컨트롤하는 클래스
 /// </summary>
-public class FiringStage : MonoBehaviour
+public class FiringStep : MonoBehaviour
 {   
     [SerializeField] SpriteRenderer leafSprite;
     [SerializeField] TMP_Text text;

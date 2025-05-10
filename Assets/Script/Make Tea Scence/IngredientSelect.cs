@@ -1,9 +1,7 @@
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using TMPro;
 using UnityEngine.UI;
-using System.Data.Common;
 
 public class IngredientSelect : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler
 {
@@ -29,14 +27,14 @@ public class IngredientSelect : MonoBehaviour, IPointerClickHandler, IPointerEnt
         isSelected = !isSelected;
         if(isSelected)
         {
-            if(ingredientControl.addIngredient(gameObject))
+            if(ingredientControl.AddIngredient(gameObject))
             {
                 GetComponent<Image>().color = selectedColor;
             }
         }
         else
         {
-            ingredientControl.removeIngredient(gameObject);
+            ingredientControl.RemoveIngredient(gameObject);
             GetComponent<Image>().color = baseColor;
         }
     }

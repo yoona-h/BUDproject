@@ -1,5 +1,5 @@
-using Microsoft.Unity.VisualStudio.Editor;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class IngredientControl : MonoBehaviour
 {
@@ -8,6 +8,7 @@ public class IngredientControl : MonoBehaviour
     [SerializeField] MakeTeaManager makeTeaManager;
 
     [SerializeField] GameObject[] ingredients = new GameObject[4];
+    [SerializeField] GameObject[] basket = new GameObject[4];
     
     void OnMouseDown()
     {
@@ -21,9 +22,14 @@ public class IngredientControl : MonoBehaviour
         ingredientWindow.SetActive(false);
         arrows.SetActive(true);
         transform.parent.GetComponent<Collider2D>().enabled = true;
+        /*r(int i=0; i<4; i++)
+        {
+            if(ingredients[i] != null)
+                basket[i].GetComponent<SpriteRenderer>().sprite = ingredients[i].GetComponent<Image>().sprite;
+        }*/
     }
 
-    public bool addIngredient(GameObject obj)
+    public bool AddIngredient(GameObject obj)
     {
         for(int i=0; i<ingredients.Length; i++)
         {
@@ -36,13 +42,14 @@ public class IngredientControl : MonoBehaviour
         return false;
     }
 
-    public void removeIngredient(GameObject obj)
+    public void RemoveIngredient(GameObject obj)
     {
         for(int i=0; i<ingredients.Length; i++)
         {
             if(ingredients[i] == obj)
             {
                 ingredients[i] = null;
+                // baket[i].GetComponent<SpriteRenderer>().sprite = null;
             }
         }
     }

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class BrewingStage : MonoBehaviour
+public class BrewingStep : MonoBehaviour
 {
     [Header("오브젝트")]
     [SerializeField] private GameObject gaiwan;
