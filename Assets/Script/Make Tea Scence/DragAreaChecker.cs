@@ -20,7 +20,7 @@ public class DragAreaChecker : MonoBehaviour
     public event Action OnExitArea;
 
     [Header("제자리로 돌아가는 시간")]
-    public float duration = 0.3f;
+    [SerializeField] float duration = 0.3f;
 
     bool isDragging = false;
     Vector3 offset;

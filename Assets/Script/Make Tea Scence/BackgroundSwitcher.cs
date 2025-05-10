@@ -9,16 +9,16 @@ using UnityEngine.UI;
 public class BackgroundSwitcher : MonoBehaviour
 {
     [Header("BackGround")]
-    public GameObject workbenchBG; // 작업대
-    public GameObject storageBG; // 재료 창고
-    public GameObject furnaceBG; // 아궁이
-    public GameObject barBG; // 손님에게 차 제공할 바
+    [SerializeField] GameObject workbenchBG; // 작업대
+    [SerializeField] GameObject storageBG; // 재료 창고
+    [SerializeField] GameObject furnaceBG; // 아궁이
+    [SerializeField] GameObject barBG; // 손님에게 차 제공할 바
 
     [Header("Arrows")]
-    public GameObject leftArrow;
-    public GameObject rightArrow;
-    public GameObject upArrow;
-    public GameObject downArrow;
+    [SerializeField] GameObject leftArrow;
+    [SerializeField] GameObject rightArrow;
+    [SerializeField] GameObject upArrow;
+    [SerializeField] GameObject downArrow;
     
     MakeTeaManager makeTeaManager;
 
@@ -41,18 +41,18 @@ public class BackgroundSwitcher : MonoBehaviour
         {
             if(teaStep == TeaStep.Firing)
             {
-                ChangeBackground(TeaStep.WitheringAndOxidation);
+                ChangeBackground(TeaStep.Oxidation);
             }
             else
             {
-                ChangeBackground(TeaStep.Plucking);
+                ChangeBackground(TeaStep.PluckingAndWithering);
             }
         }
         else if(direction.Equals("right"))
         {
-            if(teaStep == TeaStep.Plucking)
+            if(teaStep == TeaStep.PluckingAndWithering)
             {
-                ChangeBackground(TeaStep.WitheringAndOxidation);
+                ChangeBackground(TeaStep.Oxidation);
             }
             else
             {
@@ -65,7 +65,7 @@ public class BackgroundSwitcher : MonoBehaviour
         }
         else
         {
-            ChangeBackground(TeaStep.Plucking);
+            ChangeBackground(TeaStep.PluckingAndWithering);
         }
     }
 
@@ -88,11 +88,11 @@ public class BackgroundSwitcher : MonoBehaviour
         // 차 만들기 단계 따라 배경과 화살표 켜기
         switch(teaStep)
         {
-            case TeaStep.Plucking: 
+            case TeaStep.PluckingAndWithering: 
                 storageBG.SetActive(true);
                 rightArrow.SetActive(true); upArrow.SetActive(true);
                 break;
-            case TeaStep.WitheringAndOxidation: 
+            case TeaStep.Oxidation: 
                 workbenchBG.SetActive(true);
                 leftArrow.SetActive(true); rightArrow.SetActive(true); 
                 break;
