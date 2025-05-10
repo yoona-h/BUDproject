@@ -47,6 +47,9 @@ TagManager:
   - name: ForeGround
     uniqueID: 2234311151
     locked: 0
+  - name: New Layer 4
+    uniqueID: 168564425
+    locked: 0
   - name: InteractiveObject
     uniqueID: 177966035
     locked: 0

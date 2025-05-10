@@ -22,11 +22,11 @@ public class IngredientControl : MonoBehaviour
         ingredientWindow.SetActive(false);
         arrows.SetActive(true);
         transform.parent.GetComponent<Collider2D>().enabled = true;
-        /*r(int i=0; i<4; i++)
+        for (int i=0; i<4; i++)
         {
             if(ingredients[i] != null)
                 basket[i].GetComponent<SpriteRenderer>().sprite = ingredients[i].GetComponent<Image>().sprite;
-        }*/
+        }
     }
 
     public bool AddIngredient(GameObject obj)
@@ -49,7 +49,7 @@ public class IngredientControl : MonoBehaviour
             if(ingredients[i] == obj)
             {
                 ingredients[i] = null;
-                // baket[i].GetComponent<SpriteRenderer>().sprite = null;
+                basket[i].GetComponent<SpriteRenderer>().sprite = null;
             }
         }
     }
