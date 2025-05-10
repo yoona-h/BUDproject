@@ -22,6 +22,7 @@ public class OxidationStage : MonoBehaviour
     [SerializeField] MakeTeaManager makeTeaManager;
     DragAreaChecker dragChecker;
 
+    Collider2D leafColider;
     float processTime = 0f;
     bool isProcessing = false;
     Vector2 talismanPos;
@@ -34,6 +35,7 @@ public class OxidationStage : MonoBehaviour
 
         makeTeaManager.leafColor = leafSprite.color;
         talismanPos = talisman.transform.position;
+        leafColider = GetComponent<Collider2D>();
     }
 
     void Update()

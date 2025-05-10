@@ -36,8 +36,10 @@ public class DragAreaChecker : MonoBehaviour
     }
 
     void Update()
-    {        
+    {
         if (!isDraggable) return;
+
+        // TODO: 
 
         isInArea = targetArea.bounds.Contains(transform.position);
 

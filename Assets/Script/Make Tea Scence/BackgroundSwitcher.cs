@@ -61,11 +61,11 @@ public class BackgroundSwitcher : MonoBehaviour
         }
         else if(direction.Equals("up"))
         {
-            ChangeBackground(TeaStep.Firing);
+            ChangeBackground(TeaStep.Brewing);
         }
         else
         {
-            ChangeBackground(TeaStep.Brewing);
+            ChangeBackground(TeaStep.Plucking);
         }
     }
 
@@ -90,7 +90,7 @@ public class BackgroundSwitcher : MonoBehaviour
         {
             case TeaStep.Plucking: 
                 storageBG.SetActive(true);
-                rightArrow.SetActive(true);
+                rightArrow.SetActive(true); upArrow.SetActive(true);
                 break;
             case TeaStep.WitheringAndOxidation: 
                 workbenchBG.SetActive(true);
@@ -98,11 +98,11 @@ public class BackgroundSwitcher : MonoBehaviour
                 break;
             case TeaStep.Firing: 
                 furnaceBG.SetActive(true);
-                leftArrow.SetActive(true); downArrow.SetActive(true);
+                leftArrow.SetActive(true);
                 break;
             case TeaStep.Brewing: 
                 barBG.SetActive(true);
-                upArrow.SetActive(true);
+                downArrow.SetActive(true);
                 break;
         }
 
