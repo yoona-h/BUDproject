@@ -7,6 +7,10 @@ using TMPro;
 /// </summary>
 public class FiringStep : MonoBehaviour
 {   
+    [Header("UI")]
+    [SerializeField] TMP_Text text;
+    [SerializeField] Slider progressSlider;
+
     [Header("찻잎")]
     [SerializeField] SpriteRenderer leafSprite;
 
@@ -18,10 +22,6 @@ public class FiringStep : MonoBehaviour
 
     MakeTeaManager makeTeaManager;
     DragAreaChecker dragAreaChecker;
-
-    TMP_Text text;
-    Slider progressSlider;
-
 
     float processTime = 0f;
     bool isProcessing = false;
@@ -42,16 +42,13 @@ public class FiringStep : MonoBehaviour
 
     void Start()
     {
-        // UI 가져오기
-        text = transform.GetComponentInChildren<TMP_Text>();
-        progressSlider = transform.GetComponentInChildren<Slider>();
-        progressSlider.gameObject.SetActive(false);
-
         // 스크립트 가져오기
         dragAreaChecker = leafSprite.GetComponent<DragAreaChecker>();
         // dragChecker 액션 따라 실행할 함수
         dragAreaChecker.OnEnterArea += StartProcessing;
         dragAreaChecker.OnExitArea += StopProcessing;
+
+        progressSlider.gameObject.SetActive(false);
     }
 
     void Update()

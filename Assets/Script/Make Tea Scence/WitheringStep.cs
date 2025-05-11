@@ -1,12 +1,17 @@
 using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 /// <summary>
 /// 찻잎 시들리기 단계
 /// </summary>
 public class WitheringStep : MonoBehaviour
 {
+    [Header("UI")]
+    [SerializeField] TMP_Text text;
+    // [SerializeField] Slider progressSlider;
+
     [Tooltip("클릭해야 하는 수")]
     [SerializeField] int maxClick;
 
@@ -49,11 +54,15 @@ public class WitheringStep : MonoBehaviour
             ingredientCollider.enabled = false;
             StartCoroutine(MoveTeaDry(startPos + new Vector2(0,offset), 0));
         }
+
+        text.gameObject.SetActive(true);
+        // progressSlider.gameObject.SetActive(false);
     }
 
     void OnDisable()
     {
         transform.position = startPos;
+        
         leafs[0].SetActive(true);
         leafs[1].SetActive(false);
     }
@@ -73,14 +82,14 @@ public class WitheringStep : MonoBehaviour
                 leafs[0].SetActive(false);
                 leafs[1].SetActive(true); // 마르고 부서진 찻잎 스프라이트
                 makeTeaManager.isPluckingAndWitheringFin = true;
-                
+                text.gameObject.SetActive(false);
                 StartCoroutine(MoveTeaDry(startPos, waitTime));
             }
         }
     }
 
     /// <summary>
-    /// 아래쪽에서 Tea Dry 올라오는 애니메이션
+    /// Tea Dry 움직이는 애니메이션
     /// </summary>
     IEnumerator MoveTeaDry(Vector2 endPos, float waitTime)
     {

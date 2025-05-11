@@ -7,6 +7,10 @@ using TMPro;
 /// </summary>
 public class OxidationStep : MonoBehaviour
 {
+    [Header("UI")]
+    [SerializeField] TMP_Text text;
+    [SerializeField] Slider progressSlider;
+
     [Header("찻잎")]
     [SerializeField] SpriteRenderer leafSprite;
 
@@ -21,8 +25,7 @@ public class OxidationStep : MonoBehaviour
     MakeTeaManager makeTeaManager;
     DragAreaChecker dragChecker;
 
-    TMP_Text text;
-    Slider progressSlider;
+    
 
     float processTime = 0f;
     bool isProcessing = false;
@@ -39,11 +42,6 @@ public class OxidationStep : MonoBehaviour
 
     void Start()
     {
-        // UI 가져오기
-        text = transform.GetComponentInChildren<TMP_Text>();
-        progressSlider = transform.GetComponentInChildren<Slider>();
-        progressSlider.gameObject.SetActive(false);
-
         // 시작 잎 색깔 가져오기
         makeTeaManager.leafColor = leafSprite.color;
 
@@ -52,6 +50,8 @@ public class OxidationStep : MonoBehaviour
         // dragChecker 액션 따라 실행할 함수
         dragChecker.OnEnterArea += StartProcessing;
         dragChecker.OnExitArea += StopProcessing;
+
+        progressSlider.gameObject.SetActive(false);
     }
 
     void Update()

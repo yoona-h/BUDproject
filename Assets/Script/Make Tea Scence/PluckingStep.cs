@@ -1,13 +1,20 @@
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 /// <summary>
 /// 찻잎 영역을 클릭하면 잎을 수확
 /// </summary>
 public class PluckingStep : MonoBehaviour
 {
-    [Tooltip("클릭해야 하는 수")]
+    [Header("UI")]
+    [SerializeField] TMP_Text text;
+    [SerializeField] Slider progressSlider;
+
+    [Header("클릭 수")]
     [SerializeField] int maxClick = 10;
 
+    [Header("withering 오브젝트")]
     [SerializeField] GameObject withering;
     
     MakeTeaManager makeTeaManager;
@@ -20,18 +27,26 @@ public class PluckingStep : MonoBehaviour
         if(makeTeaManager == null)
             makeTeaManager = GameObject.FindWithTag("GameController").GetComponent<MakeTeaManager>();
         
-        currentClick = maxClick;
+        currentClick = 0;
+
         withering.SetActive(false);
+        progressSlider.gameObject.SetActive(false);
     }
 
     void OnMouseDown() {
-        if(currentClick > 0 && !makeTeaManager.isPluckingAndWitheringFin)
+        if(currentClick < maxClick && !makeTeaManager.isPluckingAndWitheringFin)
         {
-            currentClick--;
             Debug.Log("수확");
+            currentClick++;
             // TODO: 수확 애니메이션, 사운드 실행
-            if(currentClick == 0)
+
+            progressSlider.gameObject.SetActive(true);
+            progressSlider.value = (float)currentClick / maxClick;
+
+            if(currentClick == maxClick)
             {
+                progressSlider.gameObject.SetActive(false);
+                text.enabled = false;
                 withering.SetActive(true);
             }
         }
