@@ -12,11 +12,12 @@ public class FiringStep : MonoBehaviour
 
     [Header("덖기 기준 시간 (초)")]
     [SerializeField] float[] timeThresholds;
-    
+
+    [Header("연기 파티클")]
+    [SerializeField] ParticleSystem smokeEffect;
+
     MakeTeaManager makeTeaManager;
     DragAreaChecker dragAreaChecker;
-
-    ParticleSystem smokeEffect;
 
     TMP_Text text;
     Slider progressSlider;
@@ -30,9 +31,6 @@ public class FiringStep : MonoBehaviour
         // 스크립트 가져오기
         if(makeTeaManager == null)
             makeTeaManager = GameObject.FindWithTag("GameController").GetComponent<MakeTeaManager>();
-        // 파티클 가져오기
-        if(smokeEffect == null)
-            smokeEffect = transform.GetComponentInChildren<ParticleSystem>();
 
         // 잎 색깔 설정
         leafSprite.gameObject.SetActive(makeTeaManager.isPluckingAndWitheringFin);
