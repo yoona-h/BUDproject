@@ -7,38 +7,53 @@ using TMPro;
 /// </summary>
 public class FiringStep : MonoBehaviour
 {   
+    [Header("찻잎")]
     [SerializeField] SpriteRenderer leafSprite;
-    [SerializeField] TMP_Text text;
-    [SerializeField] Slider progressSlider;
 
     [Header("덖기 기준 시간 (초)")]
-    [SerializeField] protected float[] timeThresholds;
-
-    [Header("연기 파티클")]
-    [SerializeField] private ParticleSystem smokeEffect;
+    [SerializeField] float[] timeThresholds;
     
-    [SerializeField] MakeTeaManager makeTeaManager;
+    MakeTeaManager makeTeaManager;
     DragAreaChecker dragAreaChecker;
+
+    ParticleSystem smokeEffect;
+
+    TMP_Text text;
+    Slider progressSlider;
+
 
     float processTime = 0f;
     bool isProcessing = false;
 
-    void Start()
-    {
-        dragAreaChecker = leafSprite.GetComponent<DragAreaChecker>();
-        dragAreaChecker.OnEnterArea += StartProcessing;
-        dragAreaChecker.OnExitArea += StopProcessing;
-    }
-
     void OnEnable()
     {
-        leafSprite.gameObject.SetActive(makeTeaManager.isPluckingAndWitheringFin);
+        // 스크립트 가져오기
+        if(makeTeaManager == null)
+            makeTeaManager = GameObject.FindWithTag("GameController").GetComponent<MakeTeaManager>();
+        // 파티클 가져오기
+        if(smokeEffect == null)
+            smokeEffect = transform.GetComponentInChildren<ParticleSystem>();
 
         // 잎 색깔 설정
+        leafSprite.gameObject.SetActive(makeTeaManager.isPluckingAndWitheringFin);
         leafSprite.color = makeTeaManager.leafColor;
 
         if (smokeEffect != null && smokeEffect.isPlaying)
             smokeEffect.Stop();
+    }
+
+    void Start()
+    {
+        // UI 가져오기
+        text = transform.GetComponentInChildren<TMP_Text>();
+        progressSlider = transform.GetComponentInChildren<Slider>();
+        progressSlider.gameObject.SetActive(false);
+
+        // 스크립트 가져오기
+        dragAreaChecker = leafSprite.GetComponent<DragAreaChecker>();
+        // dragChecker 액션 따라 실행할 함수
+        dragAreaChecker.OnEnterArea += StartProcessing;
+        dragAreaChecker.OnExitArea += StopProcessing;
     }
 
     void Update()

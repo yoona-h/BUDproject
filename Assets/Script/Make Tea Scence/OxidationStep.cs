@@ -9,9 +9,6 @@ public class OxidationStep : MonoBehaviour
 {
     [Header("찻잎")]
     [SerializeField] SpriteRenderer leafSprite;
-    [Header("UI")]
-    [SerializeField] TMP_Text text;
-    [SerializeField] Slider progressSlider;
 
     [Header("색 변화 기준 시간 (초)")]
     [SerializeField] float[] timeThresholds;
@@ -21,25 +18,40 @@ public class OxidationStep : MonoBehaviour
     [Header("부적")]
     [SerializeField] GameObject talisman;
 
-    [SerializeField] MakeTeaManager makeTeaManager;
+    MakeTeaManager makeTeaManager;
     DragAreaChecker dragChecker;
+
+    TMP_Text text;
+    Slider progressSlider;
 
     float processTime = 0f;
     bool isProcessing = false;
     
-    void Start()
-    {
-        dragChecker = talisman.GetComponent<DragAreaChecker>();
-        dragChecker.OnEnterArea += StartProcessing;
-        dragChecker.OnExitArea += StopProcessing;
-
-        makeTeaManager.leafColor = leafSprite.color;
-    }
-
     void OnEnable()
     {
+        if(makeTeaManager == null)
+            makeTeaManager = GameObject.FindWithTag("GameController").GetComponent<MakeTeaManager>();
+        
+        // 수확과 시들리기 완료 여부 따라 오브젝트 세팅
         leafSprite.gameObject.SetActive(makeTeaManager.isPluckingAndWitheringFin);
         talisman.SetActive(makeTeaManager.isPluckingAndWitheringFin);
+    }
+
+    void Start()
+    {
+        // UI 가져오기
+        text = transform.GetComponentInChildren<TMP_Text>();
+        progressSlider = transform.GetComponentInChildren<Slider>();
+        progressSlider.gameObject.SetActive(false);
+
+        // 시작 잎 색깔 가져오기
+        makeTeaManager.leafColor = leafSprite.color;
+
+        // 스크립트 가져오기
+        dragChecker = talisman.GetComponent<DragAreaChecker>();
+        // dragChecker 액션 따라 실행할 함수
+        dragChecker.OnEnterArea += StartProcessing;
+        dragChecker.OnExitArea += StopProcessing;
     }
 
     void Update()

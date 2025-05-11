@@ -7,17 +7,21 @@ public class PluckingStep : MonoBehaviour
 {
     [Tooltip("클릭해야 하는 수")]
     [SerializeField] int maxClick = 10;
+
+    [SerializeField] GameObject withering;
     
-    [Header("Scripts")]
-    [SerializeField] MakeTeaManager makeTeaManager;
-    [SerializeField] WitheringStep witheringStep;
+    MakeTeaManager makeTeaManager;
 
     int currentClick;
 
     void OnEnable()
     {
+        // 스크립트 가져오기
+        if(makeTeaManager == null)
+            makeTeaManager = GameObject.FindWithTag("GameController").GetComponent<MakeTeaManager>();
+        
         currentClick = maxClick;
-        witheringStep.enabled = false;
+        withering.SetActive(false);
     }
 
     void OnMouseDown() {
@@ -25,10 +29,10 @@ public class PluckingStep : MonoBehaviour
         {
             currentClick--;
             Debug.Log("수확");
-            // 수확 애니메이션, 사운드 실행
+            // TODO: 수확 애니메이션, 사운드 실행
             if(currentClick == 0)
             {
-                witheringStep.enabled = true;
+                withering.SetActive(true);
             }
         }
     }

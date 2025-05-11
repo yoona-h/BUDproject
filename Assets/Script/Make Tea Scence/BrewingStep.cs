@@ -3,22 +3,21 @@ using UnityEngine;
 public class BrewingStep : MonoBehaviour
 {
     [Header("오브젝트")]
-    [SerializeField] private GameObject gaiwan;
-    [SerializeField] private GameObject teaPot;
+    [SerializeField] GameObject gaiwan;
+    [SerializeField] GameObject teaPot;
 
-    [SerializeField] private float xPos;
+    [SerializeField] float xPos;
 
-    private int ingredientCnt;
+    MakeTeaManager makeTeaManager;
+    int ingredientCnt;
 
     void Start()
     {
+        // 스크립트 가져오기
+        makeTeaManager = GameObject.FindWithTag("GameController").GetComponent<MakeTeaManager>();
+        
         teaPot.SetActive(false);
         //StageManager.Instance.Cntis3 += TeaPotAni;
-    }
-
-    void Update()
-    {
-        
     }
 
     void TeaPotAni()

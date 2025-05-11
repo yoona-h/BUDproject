@@ -1041,7 +1041,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &154334428
 Transform:
   m_ObjectHideFlags: 0
@@ -1067,22 +1067,19 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 154334427}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9767adcd38ada0e4daa5768d86dce9e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxClick: 5
   startPos: {x: 0, y: -9}
   offset: 7
   teaDryMoveTime: 0.5
   waitTime: 1
-  maxClick: 5
   leafs:
   - {fileID: 1203731144}
   - {fileID: 932161404}
-  arrows: {fileID: 250546916}
-  makeTeaManager: {fileID: 1403377227}
-  ingredientCollider: {fileID: 2103738707}
 --- !u!61 &154334430
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1832,8 +1829,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxClick: 5
-  makeTeaManager: {fileID: 1403377227}
-  witheringStep: {fileID: 154334429}
+  withering: {fileID: 154334427}
 --- !u!61 &239775307
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3356,7 +3352,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &604213882
 Transform:
   m_ObjectHideFlags: 0
@@ -3902,8 +3898,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1651692763
+  m_SortingLayer: -1
   m_SortingOrder: 0
   m_Sprite: {fileID: -6384236850654997232, guid: 9e7fe3e6bba4141b9b19afbc0c8e1e9b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -6083,8 +6079,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   leafSprite: {fileID: 800833213}
-  text: {fileID: 1877829148}
-  progressSlider: {fileID: 1477179977}
   timeThresholds:
   - 2
   - 4
@@ -6098,7 +6092,6 @@ MonoBehaviour:
   - {r: 0.7764706, g: 0.15686275, b: 0.15686275, a: 1}
   - {r: 0.3647059, g: 0.2509804, b: 0.21568628, a: 1}
   talisman: {fileID: 173273241}
-  makeTeaManager: {fileID: 1403377227}
 --- !u!1 &1282165535
 GameObject:
   m_ObjectHideFlags: 0
@@ -6481,7 +6474,7 @@ GameObject:
   - component: {fileID: 1297188259}
   - component: {fileID: 1297188260}
   m_Layer: 0
-  m_Name: Basket_0
+  m_Name: Basket
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7024,7 +7017,7 @@ GameObject:
   - component: {fileID: 1403377228}
   m_Layer: 0
   m_Name: MakeTea Managers
-  m_TagString: Untagged
+  m_TagString: GameController
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7280,14 +7273,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   leafSprite: {fileID: 1648604629}
-  text: {fileID: 374247005}
-  progressSlider: {fileID: 1632042074}
   timeThresholds:
   - 3
   - 5
   - 7
-  smokeEffect: {fileID: 1917089834}
-  makeTeaManager: {fileID: 1403377227}
 --- !u!1 &1464233064
 GameObject:
   m_ObjectHideFlags: 0
@@ -7342,7 +7331,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1477179976
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8000,7 +7989,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1632042073
 RectTransform:
   m_ObjectHideFlags: 0
@@ -14825,8 +14814,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ingredientWindow: {fileID: 868823843}
-  arrows: {fileID: 250546916}
-  makeTeaManager: {fileID: 1403377227}
   ingredients:
   - {fileID: 0}
   - {fileID: 0}

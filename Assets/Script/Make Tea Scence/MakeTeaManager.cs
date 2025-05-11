@@ -35,7 +35,7 @@ public class MakeTeaManager : MonoBehaviour
     public float oxidationTime = 0f;
     public float firingTime = 0f;
     
-    void Start()
+    void Awake()
     {
         ChangeStep(currentStep);
         Mask_Screen.SetActive(false);
@@ -74,9 +74,6 @@ public class MakeTeaManager : MonoBehaviour
                 brewingObjs.SetActive(true); break;
         }
     }
-
-
-
 
     void Reset_ChangeScreen()
     {

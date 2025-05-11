@@ -7,6 +7,9 @@ using UnityEngine;
 /// </summary>
 public class WitheringStep : MonoBehaviour
 {
+    [Tooltip("클릭해야 하는 수")]
+    [SerializeField] int maxClick;
+
     [Header("Tea Dry 애니메이션 관련")]
     [Tooltip("시작 위치")]
     [SerializeField] Vector2 startPos;
@@ -17,20 +20,26 @@ public class WitheringStep : MonoBehaviour
     [Tooltip("시들리기 완료 후 딜레이 시간 (초)")]
     [SerializeField] float waitTime = 1f;
 
-    [Space()]
-    [Tooltip("클릭해야 하는 수")]
-    [SerializeField] int maxClick;
-
-    [Header("기타 컴포넌트")]
+    [Header("찻잎 오브젝트")]
     [SerializeField] GameObject[] leafs;
-    [SerializeField] GameObject arrows; // 시들리기 완료 전까진 다른 장소로 이동 불가
-    [SerializeField] MakeTeaManager makeTeaManager;
-    [SerializeField] Collider2D ingredientCollider;
     
+    MakeTeaManager makeTeaManager;
+    GameObject arrows;
+    Collider2D ingredientCollider;
     int currentClick;
 
     void OnEnable()
     {
+        // 스크립트 가져오기
+        if(makeTeaManager == null)
+            makeTeaManager = GameObject.FindWithTag("GameController").GetComponent<MakeTeaManager>();
+        // 화살표 버튼 가져오기
+        if(arrows == null)
+            arrows = GameObject.Find("MoveArrow");
+        // 재료 영역 콜라이더 가져오기
+        if(ingredientCollider == null)
+            ingredientCollider = transform.parent.GetComponentInChildren<IngredientControl>().gameObject.GetComponent<Collider2D>();
+
         if(!makeTeaManager.isPluckingAndWitheringFin)
         {
             currentClick = maxClick;
@@ -66,7 +75,6 @@ public class WitheringStep : MonoBehaviour
                 makeTeaManager.isPluckingAndWitheringFin = true;
                 
                 StartCoroutine(MoveTeaDry(startPos, waitTime));
-                ingredientCollider.enabled = true;
             }
         }
     }
@@ -88,6 +96,8 @@ public class WitheringStep : MonoBehaviour
         }
 
         transform.position = endPos;
+
+        ingredientCollider.enabled = true;
         arrows.SetActive(makeTeaManager.isPluckingAndWitheringFin);
     }
 }
