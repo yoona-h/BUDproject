@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class IngredientControl : MonoBehaviour
@@ -20,9 +21,12 @@ public class IngredientControl : MonoBehaviour
 
     void OnMouseDown()
     {
-        ingredientWindow.SetActive(true);
-        arrows.SetActive(false);
-        transform.parent.GetComponent<Collider2D>().enabled = false;
+        if(!EventSystem.current.IsPointerOverGameObject())
+        {
+            ingredientWindow.SetActive(true);
+            arrows.SetActive(false);
+            transform.parent.GetComponent<Collider2D>().enabled = false;
+        }
     }
 
     public void CloseWindow()
