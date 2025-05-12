@@ -14,21 +14,17 @@ public class DragAreaChecker : MonoBehaviour
     [Header("드래그 가능 여부")]
     [SerializeField]bool isDraggable = true;
 
-    public bool IsInTargetArea { get; private set; }
-
-    public event Action OnEnterArea;
-    public event Action OnExitArea;
-
     [Header("제자리로 돌아가는 시간")]
     [SerializeField] float duration = 0.3f;
 
+    public bool IsInTargetArea { get; private set; }
+    public event Action OnEnterArea;
+    public event Action OnExitArea;
+
     bool isDragging = false;
+    bool isInArea;
     Vector3 offset;
     Vector2 basePos;
-    
-    //bool wasInTargetArea = false;
-
-    bool isInArea;
 
     void Start()
     {
@@ -101,22 +97,4 @@ public class DragAreaChecker : MonoBehaviour
         transform.position = basePos;
         isDraggable = true;
     }
-
-    /*void CheckAreaState()
-    {
-        bool isNowInArea = targetArea.bounds.Contains(transform.position);
-
-        if (!wasInTargetArea && isNowInArea)
-        {
-            OnEnterArea?.Invoke(); // 진입 시 호출
-        }
-        else if (wasInTargetArea && !isNowInArea)
-        {
-            OnExitArea?.Invoke(); // 이탈 시 호출
-            transform.position = basePos;
-        }
-
-        IsInTargetArea = isNowInArea;
-        wasInTargetArea = isNowInArea;
-    }*/
 }
