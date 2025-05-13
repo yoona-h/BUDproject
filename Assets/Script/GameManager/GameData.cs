@@ -34,18 +34,6 @@ public class GameData : MonoBehaviour
             Destroy(gameObject);
 
         DontDestroyOnLoad(gameObject);
-
-        LoadData();
-    }
-
-    public void SaveData()
-    {
-
-    }
-
-    public void LoadData()
-    {
-
     }
 
     public void SaveData()
