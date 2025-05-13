@@ -19,9 +19,10 @@ public class DragAreaChecker : MonoBehaviour
 
     public event Action OnEnterArea;
     public event Action OnExitArea;
+    public bool isInArea;
 
     bool isDragging = false;
-    bool isInArea;
+    
     Vector3 offset;
     Vector2 basePos;
 
@@ -41,7 +42,8 @@ public class DragAreaChecker : MonoBehaviour
             if(isInArea)
             {
                 OnExitArea?.Invoke();
-                StartCoroutine(MoveToBasePos());
+                //StartCoroutine(MoveToBasePos());
+                transform.position = basePos;
                 return;
             }
 
@@ -74,7 +76,7 @@ public class DragAreaChecker : MonoBehaviour
         }
         else
         {
-            OnExitArea?.Invoke();
+            // OnExitArea?.Invoke();
             StartCoroutine(MoveToBasePos());
         }
     }

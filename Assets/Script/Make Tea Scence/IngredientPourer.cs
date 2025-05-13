@@ -2,51 +2,36 @@ using UnityEngine;
 using System;
 using System.Collections;
 
-public class IngredientPourer : DragAreaChecker
+public class IngredientPourer : MonoBehaviour
 {
-    [Header("애니메이션 실행")]
-    [SerializeField] Animator animator;
+    [SerializeField] Transform pouringPos;
 
-    [Header("애니메이션 트리거 이름")]
-    [SerializeField] string animationTrigger = "Trigger";
-
-    BrewingStep brewingStep;
+    Animator animator;
+    DragAreaChecker dragAreaChecker;
 
     void Start()
     {
-        brewingStep = transform.parent.GetComponent<BrewingStep>();
-        OnEnterArea += HandleOnEnterArea;
+        dragAreaChecker = GetComponent<DragAreaChecker>();
+        dragAreaChecker.OnEnterArea += PlayAnim;
+        animator = GetComponent<Animator>();
+        animator.SetBool("OnClick", false);
     }
 
-    void HandleOnEnterArea()
+    void PlayAnim()
     {
-        // 애니메이션 실행
-        if (animator != null)
-        {
-            brewingStep.ingredientCnt++;
-            StartCoroutine(AnimateAndDestroy());
-        }
-
-        // 애니메이션 실행 후 물체 삭제
-        Destroy(gameObject);
+        StartCoroutine(AnimateAndDestroy());    
     }
 
     IEnumerator AnimateAndDestroy()
     {
-        // 애니메이션 실행
-        if (animator != null)
+        dragAreaChecker.enabled = false;
+        if(pouringPos != null)
         {
-            animator.SetTrigger(animationTrigger);
+            transform.position = pouringPos.position;
         }
-
-        yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
-
+        
+        animator.SetBool("OnClick", true);
+        yield return new WaitForSeconds(3.333f);
         Destroy(gameObject);
-    }
-
-    void OnDestroy()
-    {
-        // 이벤트 구독 해제
-        OnEnterArea -= HandleOnEnterArea;
     }
 }
