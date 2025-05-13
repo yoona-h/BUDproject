@@ -34,6 +34,8 @@ public class GameData : MonoBehaviour
             Destroy(gameObject);
 
         DontDestroyOnLoad(gameObject);
+
+        LoadData();
     }
 
     public void SaveData()
