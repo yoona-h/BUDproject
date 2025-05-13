@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 
 public class BrewingStep : MonoBehaviour
@@ -9,9 +10,13 @@ public class BrewingStep : MonoBehaviour
     [SerializeField] GameObject leaf;
     [SerializeField] GameObject oil;
 
-    MakeTeaManager makeTeaManager;
-    int ingredientCnt = 0;
+    [Header("Teapot content number")]
+    [SerializeField] int contentNum = 3;
 
+    public int ingredientCnt = 0;
+
+    MakeTeaManager makeTeaManager;
+    
     void Start()
     {
         // 스크립트 가져오기

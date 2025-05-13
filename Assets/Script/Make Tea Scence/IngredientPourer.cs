@@ -1,47 +1,52 @@
 using UnityEngine;
-using System.Collections;
 using System;
+using System.Collections;
 
-public class IngredientPourer : MonoBehaviour
+public class IngredientPourer : DragAreaChecker
 {
-    [Header("대상 오브젝트")]
-    [SerializeField] private Transform obj; // 기준 위치 오브젝트
-    [SerializeField] private float moveDuration = 0.5f; // 애니메이션 시간
+    [Header("애니메이션 실행")]
+    [SerializeField] Animator animator;
 
-    private bool isPouring = false;
+    [Header("애니메이션 트리거 이름")]
+    [SerializeField] string animationTrigger = "Trigger";
 
-    void OnMouseDown()
+    BrewingStep brewingStep;
+
+    void Start()
     {
-        if (!isPouring && gameObject.activeInHierarchy)
-        {
-            StartCoroutine(MoveToGaiwan());
-        }
+        brewingStep = transform.parent.GetComponent<BrewingStep>();
+        OnEnterArea += HandleOnEnterArea;
     }
 
-    IEnumerator MoveToGaiwan()
+    void HandleOnEnterArea()
     {
-        isPouring = true;
-
-        Vector3 startPos = transform.position;
-        Vector3 endPos = obj.position;
-
-        float elapsed = 0f;
-        while (elapsed < moveDuration)
+        // 애니메이션 실행
+        if (animator != null)
         {
-            transform.position = Vector3.Lerp(startPos, endPos, elapsed / moveDuration);
-            elapsed += Time.deltaTime;
-            yield return null;
+            brewingStep.ingredientCnt++;
+            StartCoroutine(AnimateAndDestroy());
         }
 
-        transform.position = endPos;
-
-        // 애니메이션 완료 후 사라지거나 상태 변경
-        OnPoured();
+        // 애니메이션 실행 후 물체 삭제
+        Destroy(gameObject);
     }
 
-    void OnPoured()
+    IEnumerator AnimateAndDestroy()
     {
-        this.gameObject.SetActive(false);
-        // StageManager.Instance.SetIngredientCnt();
+        // 애니메이션 실행
+        if (animator != null)
+        {
+            animator.SetTrigger(animationTrigger);
+        }
+
+        yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
+
+        Destroy(gameObject);
+    }
+
+    void OnDestroy()
+    {
+        // 이벤트 구독 해제
+        OnEnterArea -= HandleOnEnterArea;
     }
 }

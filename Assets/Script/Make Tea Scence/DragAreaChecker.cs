@@ -17,7 +17,6 @@ public class DragAreaChecker : MonoBehaviour
     [Header("제자리로 돌아가는 시간")]
     [SerializeField] float duration = 0.3f;
 
-    public bool IsInTargetArea { get; private set; }
     public event Action OnEnterArea;
     public event Action OnExitArea;
 
