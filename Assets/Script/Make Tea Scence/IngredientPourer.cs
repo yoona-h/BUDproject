@@ -6,6 +6,8 @@ public class IngredientPourer : DragAreaChecker
 {
     [SerializeField] Transform pouringPos;
 
+    public event Action FinPouring;
+
     Animator animator;
 
     void Start()
@@ -29,7 +31,10 @@ public class IngredientPourer : DragAreaChecker
         }
         
         animator.SetBool("OnClick", true);
+        
         yield return new WaitForSeconds(3.333f);
+        
+        FinPouring?.Invoke();
         Destroy(gameObject);
     }
 }
