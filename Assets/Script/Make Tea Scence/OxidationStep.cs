@@ -11,6 +11,9 @@ public class OxidationStep : MonoBehaviour
     [SerializeField] TMP_Text text;
     [SerializeField] Slider progressSlider;
 
+    [Header("Tea Dry")]
+    [SerializeField] GameObject teaDry;
+
     [Header("찻잎")]
     [SerializeField] SpriteRenderer leafSprite;
 
@@ -36,8 +39,13 @@ public class OxidationStep : MonoBehaviour
             makeTeaManager = GameObject.FindWithTag("GameController").GetComponent<MakeTeaManager>();
         
         // 수확과 시들리기 완료 여부 따라 오브젝트 세팅
-        leafSprite.gameObject.SetActive(makeTeaManager.isPluckingAndWitheringFin);
-        talisman.SetActive(makeTeaManager.isPluckingAndWitheringFin);
+        bool isReady = makeTeaManager.isPluckingAndWitheringFin;
+        leafSprite.gameObject.SetActive(isReady);
+        talisman.SetActive(isReady);
+        if(isReady)
+        {
+            teaDry.GetComponent<Animator>().SetBool("isReady", true);
+        }
     }
 
     void Start()
@@ -122,5 +130,11 @@ public class OxidationStep : MonoBehaviour
             float max = timeThresholds[timeThresholds.Length - 1];
             progressSlider.value = Mathf.Clamp01(processTime / max);
         }
+    }
+
+    void OnDisable()
+    {
+        teaDry.GetComponent<Animator>().SetBool("isReady", false);
+        // TODO: 장면 전환시에도 애니메이션?
     }
 }

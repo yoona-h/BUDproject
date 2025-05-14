@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System;
 
 /// <summary>
 /// 찻잎 영역을 클릭하면 잎을 수확
@@ -16,6 +17,8 @@ public class PluckingStep : MonoBehaviour
 
     [Header("withering 오브젝트")]
     [SerializeField] GameObject withering;
+
+    public event Action pluckingFin;
     
     MakeTeaManager makeTeaManager;
 
@@ -29,7 +32,7 @@ public class PluckingStep : MonoBehaviour
         
         currentClick = 0;
 
-        withering.SetActive(false);
+        // withering.SetActive(false);
         progressSlider.gameObject.SetActive(false);
     }
 
@@ -47,8 +50,10 @@ public class PluckingStep : MonoBehaviour
             {
                 progressSlider.gameObject.SetActive(false);
                 text.enabled = false;
-                withering.SetActive(true);
+                pluckingFin?.Invoke();
             }
         }
     }
+
+    
 }

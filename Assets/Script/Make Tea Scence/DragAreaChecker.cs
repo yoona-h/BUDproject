@@ -9,12 +9,13 @@ using System.Collections;
 public class DragAreaChecker : MonoBehaviour
 {
     [Header("대상 영역 (Collider2D)")]
-    [SerializeField]Collider2D targetArea;
+    [SerializeField] Collider2D targetArea;
 
     [Header("드래그 가능 여부")]
-    [SerializeField]bool isDraggable = true;
+    public bool isDraggable = true;
 
     [Header("제자리로 돌아가는 시간")]
+    [SerializeField] bool isReturn = true;
     [SerializeField] float duration = 0.3f;
 
     public event Action OnEnterArea;
@@ -26,7 +27,7 @@ public class DragAreaChecker : MonoBehaviour
     Vector3 offset;
     Vector2 basePos;
 
-    void Start()
+    void Awake()
     {
         basePos = transform.position;
     }
@@ -42,8 +43,11 @@ public class DragAreaChecker : MonoBehaviour
             if(isInArea)
             {
                 OnExitArea?.Invoke();
-                //StartCoroutine(MoveToBasePos());
-                transform.position = basePos;
+                if(isReturn)
+                {
+                    transform.position = basePos;
+                    //StartCoroutine(MoveToBasePos())
+                }
                 return;
             }
 
@@ -76,7 +80,6 @@ public class DragAreaChecker : MonoBehaviour
         }
         else
         {
-            // OnExitArea?.Invoke();
             StartCoroutine(MoveToBasePos());
         }
     }

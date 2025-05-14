@@ -34,6 +34,10 @@ public class MakeTeaManager : MonoBehaviour
     [Header("차 만들기 정보")]
     public float oxidationTime = 0f;
     public float firingTime = 0f;
+
+    [Header("Inventory")]
+    public bool isInLeafInven = false;
+    public bool isInOliInven = false;
     
     void Awake()
     {

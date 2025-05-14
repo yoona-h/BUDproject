@@ -10,9 +10,6 @@ public class BrewingStep : MonoBehaviour
     [SerializeField] GameObject leaf;
     [SerializeField] GameObject oil;
 
-    [Header("Teapot content number")]
-    [SerializeField] int contentNum = 3;
-
     public int ingredientCnt = 0;
 
     MakeTeaManager makeTeaManager;

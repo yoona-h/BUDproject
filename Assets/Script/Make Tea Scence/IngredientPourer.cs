@@ -2,17 +2,15 @@ using UnityEngine;
 using System;
 using System.Collections;
 
-public class IngredientPourer : MonoBehaviour
+public class IngredientPourer : DragAreaChecker
 {
     [SerializeField] Transform pouringPos;
 
     Animator animator;
-    DragAreaChecker dragAreaChecker;
 
     void Start()
     {
-        dragAreaChecker = GetComponent<DragAreaChecker>();
-        dragAreaChecker.OnEnterArea += PlayAnim;
+        OnEnterArea += PlayAnim;
         animator = GetComponent<Animator>();
         animator.SetBool("OnClick", false);
     }
@@ -24,7 +22,7 @@ public class IngredientPourer : MonoBehaviour
 
     IEnumerator AnimateAndDestroy()
     {
-        dragAreaChecker.enabled = false;
+        isDraggable = false;
         if(pouringPos != null)
         {
             transform.position = pouringPos.position;
