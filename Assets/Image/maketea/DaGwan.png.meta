@@ -145,10 +145,10 @@ TextureImporter:
       name: DaGwan_0
       rect:
         serializedVersion: 2
-        x: 9
-        y: 25
+        x: 16
+        y: 32
         width: 480
-        height: 283
+        height: 258
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -167,8 +167,8 @@ TextureImporter:
       name: DaGwan_1
       rect:
         serializedVersion: 2
-        x: 619
-        y: 208
+        x: 626
+        y: 215
         width: 231
         height: 100
       alignment: 0
