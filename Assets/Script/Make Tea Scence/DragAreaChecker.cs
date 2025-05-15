@@ -15,7 +15,7 @@ public class DragAreaChecker : MonoBehaviour
     public bool isDraggable = true;
 
     [Header("제자리로 돌아가는 시간")]
-    [SerializeField] bool isReturn = true;
+    public bool isReturn = true;
     [SerializeField] float duration = 0.3f;
 
     public event Action OnEnterArea;
@@ -84,7 +84,7 @@ public class DragAreaChecker : MonoBehaviour
         }
     }
 
-    IEnumerator MoveToBasePos()
+    public IEnumerator MoveToBasePos()
     {
         Vector2 startPosition = transform.position;
         float elapsedTime = 0f;

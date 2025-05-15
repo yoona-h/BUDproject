@@ -5,6 +5,7 @@ using System.Collections;
 public class IngredientPourer : DragAreaChecker
 {
     [SerializeField] Transform pouringPos;
+    [SerializeField] bool isDestroy = true;
 
     public event Action FinPouring;
 
@@ -35,6 +36,13 @@ public class IngredientPourer : DragAreaChecker
         yield return new WaitForSeconds(3.333f);
         
         FinPouring?.Invoke();
-        Destroy(gameObject);
+        if(isDestroy)
+        {
+            Destroy(gameObject);
+        }
+        if(isReturn)
+        {
+            StartCoroutine(MoveToBasePos());
+        }
     }
 }
