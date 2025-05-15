@@ -4395,7 +4395,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &533412165
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4474,6 +4474,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   oilSprite: {fileID: 1250418428}
+  arrows: {fileID: 1894795447}
+  ingredientColi: {fileID: 357307667}
+  pluckingColi: {fileID: 239775307}
 --- !u!1 &537105658
 GameObject:
   m_ObjectHideFlags: 0
@@ -8073,17 +8076,17 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 533412164}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 533412168}
+        m_TargetAssemblyTypeName: OilExtraction, Assembly-CSharp
+        m_MethodName: CloseWindow
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 0
+          m_BoolArgument: 1
         m_CallState: 2
 --- !u!114 &1236449597
 MonoBehaviour:
@@ -17381,17 +17384,17 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 533412164}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 533412168}
+        m_TargetAssemblyTypeName: OilExtraction, Assembly-CSharp
+        m_MethodName: OpenWindow
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 1
+          m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1920020019
 MonoBehaviour:
