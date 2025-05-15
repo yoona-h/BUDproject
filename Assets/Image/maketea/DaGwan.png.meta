@@ -198,7 +198,9 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      DaGwan_0: 5863053192177911763
+      DaGwan_1: 6489355274188539694
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -248,7 +248,11 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Cloud_sheet_0: -6932992668040565175
+      Cloud_sheet_1: 8387534262681675351
+      Cloud_sheet_2: -745624315631178993
+      Cloud_sheet_3: -6663296237280440548
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
