@@ -10,7 +10,6 @@ public class OilExtraction : MonoBehaviour
     void Start()
     {
         oilSprite.SetActive(false);
-        gameObject.SetActive(false);
     }
 
     public void ExtractOil()
