@@ -20,6 +20,9 @@ public class FiringStep : MonoBehaviour
     [Header("연기 파티클")]
     [SerializeField] ParticleSystem smokeEffect;
 
+    [Header("Tea Dry")]
+    [SerializeField] GameObject teaDry;
+
     MakeTeaManager makeTeaManager;
     DragAreaChecker dragAreaChecker;
 
@@ -33,8 +36,13 @@ public class FiringStep : MonoBehaviour
             makeTeaManager = GameObject.FindWithTag("GameController").GetComponent<MakeTeaManager>();
 
         // 잎 색깔 설정
-        leafSprite.gameObject.SetActive(makeTeaManager.isPluckingAndWitheringFin);
+        bool isReady = makeTeaManager.isPluckingAndWitheringFin;
+        leafSprite.gameObject.SetActive(isReady);
         leafSprite.color = makeTeaManager.leafColor;
+        if(isReady)
+        {
+            teaDry.GetComponent<Animator>().SetBool("isReady", true);
+        }
 
         if (smokeEffect != null && smokeEffect.isPlaying)
             smokeEffect.Stop();
@@ -91,5 +99,10 @@ public class FiringStep : MonoBehaviour
             float max = timeThresholds[timeThresholds.Length - 1];
             progressSlider.value = Mathf.Clamp01(processTime / max);
         }
+    }
+
+    void OnDisable()
+    {
+        teaDry.GetComponent<Animator>().SetBool("isReady", false);
     }
 }
