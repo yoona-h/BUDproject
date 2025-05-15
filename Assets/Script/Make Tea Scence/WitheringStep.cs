@@ -30,11 +30,12 @@ public class WitheringStep : MonoBehaviour
 
     [Header("재료 영역 콜라이더")]
     [SerializeField] Collider2D ingredientCollider;
+    [SerializeField] GameObject arrows;
+    
     
     [SerializeField] PluckingStep pluckingStep;
     MakeTeaManager makeTeaManager;
     
-    GameObject arrows;
     
     int currentClick;
 
@@ -43,11 +44,7 @@ public class WitheringStep : MonoBehaviour
         // 스크립트 가져오기
         if(makeTeaManager == null)
             makeTeaManager = GameObject.FindWithTag("GameController").GetComponent<MakeTeaManager>();
-    
-        // 화살표 버튼 가져오기
-        if(arrows == null)
-            arrows = GameObject.Find("MoveArrow");
-
+        
         text.enabled = false;
     }
 

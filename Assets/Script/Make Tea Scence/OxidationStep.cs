@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System.Collections;
 
 /// <summary>
 /// 시들리기, 산화 단계 컨트롤하는 클래스
@@ -135,6 +136,5 @@ public class OxidationStep : MonoBehaviour
     void OnDisable()
     {
         teaDry.GetComponent<Animator>().SetBool("isReady", false);
-        // TODO: 장면 전환시에도 애니메이션?
     }
 }

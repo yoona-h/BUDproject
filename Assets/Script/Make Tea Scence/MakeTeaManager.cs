@@ -56,7 +56,7 @@ public class MakeTeaManager : MonoBehaviour
         };
     }
 
-    public void ChangeStep(TeaStep teaStep)
+    void ChangeStep(TeaStep teaStep)
     {
         currentStep = teaStep;
 
@@ -78,6 +78,11 @@ public class MakeTeaManager : MonoBehaviour
                 brewingObjs.SetActive(true); break;
         }
     }
+
+    public void SetStepToPlucking() => ChangeStep(TeaStep.PluckingAndWithering);
+    public void SetStepToOxidation() => ChangeStep(TeaStep.Oxidation);
+    public void SetStepToFiring() => ChangeStep(TeaStep.Firing);
+    public void SetStepToBrewing() => ChangeStep(TeaStep.Brewing);
 
     void Reset_ChangeScreen()
     {

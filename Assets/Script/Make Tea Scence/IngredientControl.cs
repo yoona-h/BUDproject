@@ -5,18 +5,16 @@ using UnityEngine.UI;
 public class IngredientControl : MonoBehaviour
 {
     [SerializeField] GameObject ingredientWindow;
+    [SerializeField] GameObject arrows;
     [SerializeField] GameObject[] ingredients = new GameObject[4]; // 선택된 재료 저장 배열
     [SerializeField] GameObject[] basket = new GameObject[4]; // 바구니에 담긴 재료 배열
 
     MakeTeaManager makeTeaManager;
-    GameObject arrows;
 
     void Start()
     {
         // 스크립트 가져오기
         makeTeaManager = GameObject.FindWithTag("GameController").GetComponent<MakeTeaManager>();
-        // 화살표 버튼 가져오기
-        arrows = GameObject.Find("MoveArrow");
     }
 
     void OnMouseDown()
