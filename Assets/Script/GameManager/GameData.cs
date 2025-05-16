@@ -4,23 +4,23 @@ using System.Collections.Generic;
 
 public class GameData : MonoBehaviour
 {
-    //¾À »çÀÌ¿¡¼­ Àü´ŞµÇ´Â º¯¼öµé
-    public Dictionary<string, string> investigate_contents = new Dictionary<string, string>();//Á¶»ç ³»¿ë ÀúÀå : <Á¶»çÇÑ À§Ä¡, Á¶»çÇÑ ³»¿ë>
-    public int[] visitor_status = new int[6];//¼Õ´Ô ´É·ÂÄ¡
-    public int talk_branch;//´ëÈ­ ºĞ±â
+    //ì”¬ ì‚¬ì´ì—ì„œ ì „ë‹¬ë˜ëŠ” ë³€ìˆ˜ë“¤
+    public Dictionary<string, string> investigate_contents = new Dictionary<string, string>();//ì¡°ì‚¬ ë‚´ìš© ì €ì¥ : <ì¡°ì‚¬í•œ ìœ„ì¹˜, ì¡°ì‚¬í•œ ë‚´ìš©>
+    public int[] visitor_status = new int[6];//ì†ë‹˜ ëŠ¥ë ¥ì¹˜
+    public int talk_branch;//ëŒ€í™” ë¶„ê¸°
 
 
-    //°ÔÀÓ Á¾·á ÈÄ¿¡µµ ÀúÀåµÇ´Â º¯¼öµé
-    public List<bool> ending = new List<bool>();//¿£µù ¼öÁı ¿©ºÎ
-    public bool FirstGame = true;//°ÔÀÓÀ» Ã³À½ ½ÃÀÛÇß´ÂÁö ¿©ºÎ
-    public int stage = 0;//ÇöÀç ÁøÇàµÈ ½ºÅ×ÀÌÁö. ½ºÅ×ÀÌÁö ÇÏ³ª ¿£µùÀ¸·Î º¸¸é 1¾¿ Áõ°¡½ÃÅ°±â
+    //ê²Œì„ ì¢…ë£Œ í›„ì—ë„ ì €ì¥ë˜ëŠ” ë³€ìˆ˜ë“¤
+    public List<bool[]> ending = new List<bool[]>();//ì—”ë”© ìˆ˜ì§‘ ì—¬ë¶€ (ì–´ë–¤ ì—”ë”©ì„ ë´¤ëŠ”ì§€ë„ ì €ì¥í•˜ê¸°), ì´ì•¼ê¸°ê°€ ì–´ë””ê¹Œì§€ ì§„í–‰ë˜ì—ˆëŠ”ì§€ë„ í•´ë‹¹ ë³€ìˆ˜ë¡œ íŒë‹¨í•  ì˜ˆì •.
+    public bool FirstGame = true;//ê²Œì„ì„ ì²˜ìŒ ì‹œì‘í–ˆëŠ”ì§€ ì—¬ë¶€
+    public int stage = 0;//í˜„ì¬ ì§„í–‰ëœ ìŠ¤í…Œì´ì§€. ìŠ¤í…Œì´ì§€ í•˜ë‚˜ ì—”ë”©ìœ¼ë¡œ ë³´ë©´ 1ì”© ì¦ê°€ì‹œí‚¤ê¸°
 
-    //°¢Á¾ ¼³Á¤µé
-    public float EffectSound_Volume = 1f;//È¿°úÀ½ À½·®
-    public float BackGroundMusic_Volume = 1f;//¹è°æÀ½ÇĞ À½·®
-    public int SpeakSpeed = 3;//´ëÈ­ ¼Óµµ ¼³Á¤
-    public bool SpeakingAuto = false;//´ëÈ­ ÀÚµ¿ ³Ñ±â±â ¼³Á¤ ¿©ºÎ
-    public bool EasyMode = false;//ÀÌÁö¸ğµå »ç¿ë ¿©ºÎ
+    //ê°ì¢… ì„¤ì •ë“¤
+    public float EffectSound_Volume = 1f;//íš¨ê³¼ìŒ ìŒëŸ‰ 
+    public float BackGroundMusic_Volume = 1f;//ë°°ê²½ìŒí•™ ìŒëŸ‰
+    public int SpeakSpeed = 3;//ëŒ€í™” ì†ë„ ì„¤ì •
+    public bool SpeakingAuto = false;//ëŒ€í™” ìë™ ë„˜ê¸°ê¸° ì„¤ì • ì—¬ë¶€
+    public bool EasyMode = false;//ì´ì§€ëª¨ë“œ ì‚¬ìš© ì—¬ë¶€
 
 
     public static GameData Instance;
