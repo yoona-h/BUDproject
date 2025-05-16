@@ -42,17 +42,26 @@ TagManager:
   - name: BackGround
     uniqueID: 2643274533
     locked: 0
+  - name: Background decoration
+    uniqueID: 168564425
+    locked: 0
+  - name: Object3
+    uniqueID: 177966035
+    locked: 0
+  - name: Object2
+    uniqueID: 648396645
+    locked: 0
+  - name: Object1
+    uniqueID: 981909427
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
   - name: ForeGround
     uniqueID: 2234311151
     locked: 0
-  - name: New Layer 4
-    uniqueID: 168564425
-    locked: 0
-  - name: InteractiveObject
-    uniqueID: 177966035
+  - name: Canvas
+    uniqueID: 2892937495
     locked: 0
   m_RenderingLayers:
   - Default

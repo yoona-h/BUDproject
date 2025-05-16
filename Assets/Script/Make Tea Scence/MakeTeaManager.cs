@@ -14,6 +14,7 @@ public class MakeTeaManager : MonoBehaviour
     [Header("공통 UI")]
     [SerializeField] GameObject ChangeStep_Screen;
     [SerializeField] GameObject Mask_Screen;
+    [SerializeField] GameObject ProcessingCompletedButton;
 
     [Header("Step 별 오브젝트")]
     [SerializeField] GameObject pluckingAndWitheringObj;
@@ -54,6 +55,16 @@ public class MakeTeaManager : MonoBehaviour
             { Stats.Vitality, 0 },
             { Stats.Insight, 0}
         };
+
+        ProcessingCompletedButton.SetActive(false);
+    }
+
+    void Update()
+    {
+        if(isFiringFin && !ProcessingCompletedButton.activeSelf)
+        {
+            ProcessingCompletedButton.SetActive(true);
+        }
     }
 
     void ChangeStep(TeaStep teaStep)
@@ -83,6 +94,11 @@ public class MakeTeaManager : MonoBehaviour
     public void SetStepToOxidation() => ChangeStep(TeaStep.Oxidation);
     public void SetStepToFiring() => ChangeStep(TeaStep.Firing);
     public void SetStepToBrewing() => ChangeStep(TeaStep.Brewing);
+
+    public void PlayProcessingCompletedAnim()
+    {
+        
+    }
 
     void Reset_ChangeScreen()
     {

@@ -14,9 +14,12 @@ public class DragAreaChecker : MonoBehaviour
     [Header("드래그 가능 여부")]
     public bool isDraggable = true;
 
-    [Header("제자리로 돌아가는 시간")]
+    [Header("사용 후 제자리로")]
     public bool isReturn = true;
+    [SerializeField] bool PlayAnim = false;
+    [SerializeField] Transform baseTransform; // null이면 현재 위치로 설정됨
     [SerializeField] float duration = 0.3f;
+
 
     public event Action OnEnterArea;
     public event Action OnExitArea;
@@ -29,7 +32,15 @@ public class DragAreaChecker : MonoBehaviour
 
     void Awake()
     {
-        basePos = transform.position;
+        if(baseTransform == null)
+        {
+            basePos = transform.position;
+        }
+        else
+        {
+            basePos = baseTransform.position;
+        }
+        
     }
 
     void Update()
@@ -45,8 +56,10 @@ public class DragAreaChecker : MonoBehaviour
                 OnExitArea?.Invoke();
                 if(isReturn)
                 {
-                    transform.position = basePos;
-                    //StartCoroutine(MoveToBasePos())
+                    if(!PlayAnim)
+                        transform.position = basePos;
+                    else
+                        StartCoroutine(MoveToBasePos());
                 }
                 return;
             }
@@ -84,6 +97,9 @@ public class DragAreaChecker : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 물체가 제자리로 돌아가는 애니메이션
+    /// </summary>
     public IEnumerator MoveToBasePos()
     {
         Vector2 startPosition = transform.position;
