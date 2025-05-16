@@ -173,7 +173,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Maketea_BG3_v3_0: 6787842501791092213
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
