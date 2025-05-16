@@ -7,15 +7,15 @@ using TMPro;
 public class Book_manager : MonoBehaviour
 {
     /*
-     *¼Õ´Ô ÇÏ³ª¸¦ Ãß°¡ÇÏ¸é ÇØ¾ßÇÒ ÀÏ
-     1. ÇØ´ç ¼Õ´ÔÀÌ µé¾î°¥ È­¸é ¾À¿¡¼­ ¸¸µé±â
-     2. ¸¸µç È­¸éÀÇ ¹öÆ°À» EndingSelect_button º¯¼ö¿¡ Ãß°¡ÇÏ±â
-     3. visitor_image¿¡ ¼Õ´Ô ÀÌ¹ÌÁö Ãß°¡ÇÏ±â
-     4. visitor_title¿¡ ¼Õ´Ô ÀÌ¸§ Ãß°¡ÇÏ±â
-     5. visotor_ending¿¡ ¼Õ´Ô ¿£µù ¼³¸í Ãß°¡ÇÏ±â
+     *ì†ë‹˜ í•˜ë‚˜ë¥¼ ì¶”ê°€í•˜ë©´ í•´ì•¼í•  ì¼
+     1. í•´ë‹¹ ì†ë‹˜ì´ ë“¤ì–´ê°ˆ í™”ë©´ ì”¬ì—ì„œ ë§Œë“¤ê¸°
+     2. ë§Œë“  í™”ë©´ì˜ ë²„íŠ¼ì„ EndingSelect_button ë³€ìˆ˜ì— ì¶”ê°€í•˜ê¸°
+     3. visitor_imageì— ì†ë‹˜ ì´ë¯¸ì§€ ì¶”ê°€í•˜ê¸°
+     4. visitor_titleì— ì†ë‹˜ ì´ë¦„ ì¶”ê°€í•˜ê¸°
+     5. visotor_endingì— ì†ë‹˜ ì—”ë”© ì„¤ëª… ì¶”ê°€í•˜ê¸°
      */
 
-    [Header("¼Õ´ÔÁ¤º¸ Ãâ·ÂÇÒ UI")]
+    [Header("ì†ë‹˜ì •ë³´ ì¶œë ¥í•  UI")]
     public Image VisitorEmage_emage;
     public TMP_Text VisitorTitle_text;
     public TMP_Text[] VisitorEnding_text;
@@ -25,42 +25,42 @@ public class Book_manager : MonoBehaviour
     [Space]
     public Animator animator;
     [Space(20)]
-    [Tooltip("´Ù½ÃÇÒ ¶§ ³Ñ¾î°¥ ¾À ÀÌ¸§ ÁöÁ¤ÇÏ±â. (¾î¶² ¼Õ´ÔÀ» ¼±ÅÃÇß´ÂÁö´Â GameData¿¡¼­ stageº¯¼ö¿¡ ÁöÁ¤ÇÒ ¿¹Á¤.")]
+    [Tooltip("ë‹¤ì‹œí•  ë•Œ ë„˜ì–´ê°ˆ ì”¬ ì´ë¦„ ì§€ì •í•˜ê¸°. (ì–´ë–¤ ì†ë‹˜ì„ ì„ íƒí–ˆëŠ”ì§€ëŠ” GameDataì—ì„œ stageë³€ìˆ˜ì— ì§€ì •í•  ì˜ˆì •.")]
     public string Scene_name;
     [HideInInspector] public int SelectedScene = 0;
 
     [Space(30)]
-    [Tooltip("¼Õ´Ô ÀÌ¹ÌÁö ÀúÀåÇÒ º¯¼ö. ¸ğµç ÀÌ¹ÌÁöÀÇ Å©±â´Â ÀÏÁ¤ÇÏ°Ô ¸ÂÃßÀÚ.")]
+    [Tooltip("ì†ë‹˜ ì´ë¯¸ì§€ ì €ì¥í•  ë³€ìˆ˜. ëª¨ë“  ì´ë¯¸ì§€ì˜ í¬ê¸°ëŠ” ì¼ì •í•˜ê²Œ ë§ì¶”ì.")]
     public List<Sprite> visitor_image = new List<Sprite>();
     [HideInInspector]public List<string> visitor_title = new List<string>();
     public List<string[]> visitor_ending = new List<string[]>();
-    void visitor_Data()//¼Õ´Ô°ú ¿£µù µ¥ÀÌÅÍ ÁöÁ¤
+    void visitor_Data()//ì†ë‹˜ê³¼ ì—”ë”© ë°ì´í„° ì§€ì •
     {
         if (visitor_title == null || visitor_title.Count == 0)
         {
             visitor_title = new List<string>() {
-            "¼Õ´Ô1", "¼Õ´Ô2", "¼Õ´Ô3", "¼Õ´Ô4", "¼Õ´Ô5", "¼Õ´Ô6", "¼Õ´Ô7", "¼Õ´Ô8", "¼Õ´Ô9"
+            "ì†ë‹˜1", "ì†ë‹˜2", "ì†ë‹˜3", "ì†ë‹˜4", "ì†ë‹˜5", "ì†ë‹˜6", "ì†ë‹˜7", "ì†ë‹˜8", "ì†ë‹˜9"
         };
         }
-        visitor_ending.Add(new string[] { "¿£µù1", "¿£µù2", "¿£µù3", "¿£µù4", "È÷µç ¿£µù1", " È÷µç ¿£µù2" });//¼Õ´Ô1
-        visitor_ending.Add(new string[] { "¿£µù1", "¿£µù2", "¿£µù3", "¿£µù4", "È÷µç ¿£µù1", " È÷µç ¿£µù2" });//¼Õ´Ô2
-        visitor_ending.Add(new string[] { "¿£µù1", "¿£µù2", "¿£µù3", "¿£µù4", "È÷µç ¿£µù1", " È÷µç ¿£µù2" });//¼Õ´Ô3
-        visitor_ending.Add(new string[] { "¿£µù1", "¿£µù2", "¿£µù3", "¿£µù4", "È÷µç ¿£µù1", " È÷µç ¿£µù2" });//¼Õ´Ô4
-        visitor_ending.Add(new string[] { "¿£µù1", "¿£µù2", "¿£µù3", "¿£µù4", "È÷µç ¿£µù1", " È÷µç ¿£µù2" });//¼Õ´Ô5
-        visitor_ending.Add(new string[] { "¿£µù1", "¿£µù2", "¿£µù3", "¿£µù4", "È÷µç ¿£µù1", " È÷µç ¿£µù2" });//¼Õ´Ô6
-        visitor_ending.Add(new string[] { "¿£µù1", "¿£µù2", "¿£µù3", "¿£µù4", "È÷µç ¿£µù1", " È÷µç ¿£µù2" });//¼Õ´Ô7
-        visitor_ending.Add(new string[] { "¿£µù1", "¿£µù2", "¿£µù3", "¿£µù4", "È÷µç ¿£µù1", " È÷µç ¿£µù2" });//¼Õ´Ô8
-        visitor_ending.Add(new string[] { "¿£µù1", "¿£µù2", "¿£µù3", "¿£µù4", "È÷µç ¿£µù1", " È÷µç ¿£µù2" });//¼Õ´Ô9
+        visitor_ending.Add(new string[] { "ì—”ë”©1", "ì—”ë”©2", "ì—”ë”©3", "ì—”ë”©4", "íˆë“  ì—”ë”©1", " íˆë“  ì—”ë”©2" });//ì†ë‹˜1
+        visitor_ending.Add(new string[] { "ì—”ë”©1", "ì—”ë”©2", "ì—”ë”©3", "ì—”ë”©4", "íˆë“  ì—”ë”©1", " íˆë“  ì—”ë”©2" });//ì†ë‹˜2
+        visitor_ending.Add(new string[] { "ì—”ë”©1", "ì—”ë”©2", "ì—”ë”©3", "ì—”ë”©4", "íˆë“  ì—”ë”©1", " íˆë“  ì—”ë”©2" });//ì†ë‹˜3
+        visitor_ending.Add(new string[] { "ì—”ë”©1", "ì—”ë”©2", "ì—”ë”©3", "ì—”ë”©4", "íˆë“  ì—”ë”©1", " íˆë“  ì—”ë”©2" });//ì†ë‹˜4
+        visitor_ending.Add(new string[] { "ì—”ë”©1", "ì—”ë”©2", "ì—”ë”©3", "ì—”ë”©4", "íˆë“  ì—”ë”©1", " íˆë“  ì—”ë”©2" });//ì†ë‹˜5
+        visitor_ending.Add(new string[] { "ì—”ë”©1", "ì—”ë”©2", "ì—”ë”©3", "ì—”ë”©4", "íˆë“  ì—”ë”©1", " íˆë“  ì—”ë”©2" });//ì†ë‹˜6
+        visitor_ending.Add(new string[] { "ì—”ë”©1", "ì—”ë”©2", "ì—”ë”©3", "ì—”ë”©4", "íˆë“  ì—”ë”©1", " íˆë“  ì—”ë”©2" });//ì†ë‹˜7
+        visitor_ending.Add(new string[] { "ì—”ë”©1", "ì—”ë”©2", "ì—”ë”©3", "ì—”ë”©4", "íˆë“  ì—”ë”©1", " íˆë“  ì—”ë”©2" });//ì†ë‹˜8
+        visitor_ending.Add(new string[] { "ì—”ë”©1", "ì—”ë”©2", "ì—”ë”©3", "ì—”ë”©4", "íˆë“  ì—”ë”©1", " íˆë“  ì—”ë”©2" });//ì†ë‹˜9
     }
 
 
 
     private void Awake()
     {
-        //ÇÑ ¹ø ÀÌ»ó Å¬¸®¾îÇß´ø ¼Õ´Ô¸¸ ´Ù½ÃÇÒ ¼ö ÀÖ°Ô ¼³Á¤
+        //í•œ ë²ˆ ì´ìƒ í´ë¦¬ì–´í–ˆë˜ ì†ë‹˜ë§Œ ë‹¤ì‹œí•  ìˆ˜ ìˆê²Œ ì„¤ì •
         for (int i = 0; i < GameData.Instance.ending.Count; i++)
         {
-            if (GameData.Instance.ending[i])
+            if (GameData.Instance.ending[i][0] || GameData.Instance.ending[i][1] || GameData.Instance.ending[i][2] || GameData.Instance.ending[i][3] || GameData.Instance.ending[i][4] || GameData.Instance.ending[i][5])
                 EndingSelect_button[i].interactable = true;
             else
                 EndingSelect_button[i].interactable = false;
@@ -83,7 +83,7 @@ public class Book_manager : MonoBehaviour
     public void select_stroy(int selectstory_number)
     {
         SelectedScene = selectstory_number-1;
-        //°í¸¥ ¼Õ´Ô¿¡ µû¶ó¼­ È­¸é¿¡ ¶ç¿ï '±×¸², ¼Õ´Ô ÅØ½ºÆ®, ¿£µù ÅØ½ºÆ®' ¼³Á¤ÇÏ±â
+        //ê³ ë¥¸ ì†ë‹˜ì— ë”°ë¼ì„œ í™”ë©´ì— ë„ìš¸ 'ê·¸ë¦¼, ì†ë‹˜ í…ìŠ¤íŠ¸, ì—”ë”© í…ìŠ¤íŠ¸' ì„¤ì •í•˜ê¸°
         VisitorEmage_emage.sprite = visitor_image[SelectedScene];
         VisitorTitle_text.text = visitor_title[SelectedScene];
         for (int i = 0; i < VisitorEnding_text.Length; i++)
@@ -94,9 +94,9 @@ public class Book_manager : MonoBehaviour
 
     public void OpenAndClose_WarningScreen()
     {
-        //È­¸éÀÌ ²¨Á®ÀÖÀ¸¸é Å°°í, ÄÑÁ®ÀÖÀ¸¸é ²ô±â
+        //í™”ë©´ì´ êº¼ì ¸ìˆìœ¼ë©´ í‚¤ê³ , ì¼œì ¸ìˆìœ¼ë©´ ë„ê¸°
 
-        if (WarningScreen.transform.GetChild(0).gameObject.activeSelf)//È­¸éÀÌ ÄÑÁ®ÀÖÀ» ¶§
+        if (WarningScreen.transform.GetChild(0).gameObject.activeSelf)//í™”ë©´ì´ ì¼œì ¸ìˆì„ ë•Œ
         {
             WarningScreen.transform.GetChild(0).gameObject.SetActive(false);
             WarningScreen.transform.GetChild(1).gameObject.SetActive(false);
