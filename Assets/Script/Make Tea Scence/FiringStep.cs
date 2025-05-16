@@ -9,7 +9,7 @@ public class FiringStep : MonoBehaviour
 {   
     [Header("UI")]
     [SerializeField] TMP_Text text;
-    [SerializeField] Slider progressSlider;
+    [SerializeField] GameObject timer;
 
     [Header("찻잎")]
     [SerializeField] SpriteRenderer leafSprite;
@@ -17,7 +17,7 @@ public class FiringStep : MonoBehaviour
     [Header("덖기 기준 시간 (초)")]
     [SerializeField] float[] timeThresholds;
 
-    [Header("연기 파티클")]
+    [Header("구름 파티클")]
     [SerializeField] ParticleSystem smokeEffect;
 
     [Header("Tea Dry")]
@@ -56,7 +56,7 @@ public class FiringStep : MonoBehaviour
         dragAreaChecker.OnEnterArea += StartProcessing;
         dragAreaChecker.OnExitArea += StopProcessing;
 
-        progressSlider.gameObject.SetActive(false);
+        timer.gameObject.SetActive(false);
     }
 
     void Update()
@@ -71,7 +71,7 @@ public class FiringStep : MonoBehaviour
     void StartProcessing()
     {
         isProcessing = true;
-        progressSlider.gameObject.SetActive(true);
+        timer.gameObject.SetActive(true);
         if (smokeEffect != null && !smokeEffect.isPlaying)
             smokeEffect.Play();
 
@@ -80,7 +80,7 @@ public class FiringStep : MonoBehaviour
     void StopProcessing()
     {
         isProcessing = false;
-        progressSlider.gameObject.SetActive(false);
+        timer.gameObject.SetActive(false);
 
         if (smokeEffect != null && smokeEffect.isPlaying)
             smokeEffect.Stop();
@@ -94,11 +94,15 @@ public class FiringStep : MonoBehaviour
 
     void UpdateProgressBar()
     {
-        if (progressSlider != null && timeThresholds.Length > 0)
+        /*if (timer != null && timeThresholds.Length > 0)
         {
             float max = timeThresholds[timeThresholds.Length - 1];
-            progressSlider.value = Mathf.Clamp01(processTime / max);
-        }
+            timer.value = Mathf.Clamp01(processTime / max);
+        }*/
+        int max = (int)timeThresholds[timeThresholds.Length - 1];
+        int time = max - (int)processTime;
+        if(time >= 0)
+            text.text = $"{time}";
     }
 
     void OnDisable()

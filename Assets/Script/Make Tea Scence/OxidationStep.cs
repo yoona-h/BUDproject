@@ -10,7 +10,7 @@ public class OxidationStep : MonoBehaviour
 {
     [Header("UI")]
     [SerializeField] TMP_Text text;
-    [SerializeField] Slider progressSlider;
+    [SerializeField] GameObject timer;
 
     [Header("Tea Dry")]
     [SerializeField] GameObject teaDry;
@@ -60,7 +60,7 @@ public class OxidationStep : MonoBehaviour
         dragChecker.OnEnterArea += StartProcessing;
         dragChecker.OnExitArea += StopProcessing;
 
-        progressSlider.gameObject.SetActive(false);
+        timer.gameObject.SetActive(false);
     }
 
     void Update()
@@ -78,14 +78,14 @@ public class OxidationStep : MonoBehaviour
         if(!makeTeaManager.isFiringFin)
         {
             isProcessing = true;
-            progressSlider.gameObject.SetActive(true);
+            timer.gameObject.SetActive(true);
         }
     }
 
     void StopProcessing()
     {
         isProcessing = false;
-        progressSlider.gameObject.SetActive(false);
+        timer.gameObject.SetActive(false);
 
         makeTeaManager.leafColor = leafSprite.color;
         if(!processTime.Equals(0))
@@ -126,11 +126,15 @@ public class OxidationStep : MonoBehaviour
 
     void UpdateProgressBar()
     {
-        if (progressSlider != null && timeThresholds.Length > 0)
+        /*if (progressSlider != null && timeThresholds.Length > 0)
         {
             float max = timeThresholds[timeThresholds.Length - 1];
             progressSlider.value = Mathf.Clamp01(processTime / max);
-        }
+        }*/
+        int max = (int)timeThresholds[timeThresholds.Length - 1];
+        int time = max - (int)processTime;
+        if(time >= 0)
+            text.text = $"{time}";
     }
 
     void OnDisable()
