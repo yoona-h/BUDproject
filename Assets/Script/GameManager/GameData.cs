@@ -11,7 +11,7 @@ public class GameData : MonoBehaviour
 
 
     //게임 종료 후에도 저장되는 변수들
-    [HideInInspector] public List<bool[]> ending = new List<bool[]>();//엔딩 수집 여부 (어떤 엔딩을 봤는지도 저장하기), 이야기가 어디까지 진행되었는지도 해당 변수로 판단할 예정.
+    [HideInInspector] public List<bool[]> ending = new List<bool[]>() { new bool[6]{false, false, false, false, false, false }, new bool[6] { false, false, false, false, false, false }, new bool[6] { false, false, false, false, false, false }, new bool[6] { false, false, false, false, false, false }, new bool[6] { false, false, false, false, false, false }, new bool[6] { false, false, false, false, false, false }, new bool[6] { false, false, false, false, false, false }, new bool[6] { false, false, false, false, false, false }, new bool[6] { false, false, false, false, false, false } };//엔딩 수집 여부 (어떤 엔딩을 봤는지도 저장하기), 이야기가 어디까지 진행되었는지도 해당 변수로 판단할 예정.
     [HideInInspector] public bool FirstGame = true;//게임을 처음 시작했는지 여부
     [HideInInspector] public int stage = 0;//현재 진행된 스테이지. 스테이지 하나 엔딩으로 보면 1씩 증가시키기
 
@@ -38,11 +38,6 @@ public class GameData : MonoBehaviour
         LoadData();
     }
 
-
-    public void Reset_Data()//게임전체를 아예 다 초기화시키기 (첫 시작시 변수 초기화 용도)
-    {
-        FirstGame = true;
-    }
 
     //이 아래는 gpt가 해줌...
     public void SaveData()
