@@ -38,13 +38,93 @@ public class GameData : MonoBehaviour
         LoadData();
     }
 
+
+
+    //이 아래는 gpt가 해줌...
+
     public void SaveData()
     {
+        // Dictionary<string, string> -> InvestigateData(JSON)
+        InvestigateData invData = new InvestigateData();
+        foreach (var pair in investigate_contents)
+        {
+            invData.keys.Add(pair.Key);
+            invData.values.Add(pair.Value);
+        }
+        PlayerPrefs.SetString("investigate_contents", JsonUtility.ToJson(invData));
 
+        // visitor_status
+        for (int i = 0; i < visitor_status.Length; i++)
+            PlayerPrefs.SetInt($"visitor_status_{i}", visitor_status[i]);
+
+        PlayerPrefs.SetInt("talk_branch", talk_branch);
+
+        // ending (List<bool[]>를 List<List<bool>>으로 변환 후 직렬화)
+        EndingData endData = new EndingData();
+        foreach (var arr in ending)
+            endData.endings.Add(new List<bool>(arr));
+        PlayerPrefs.SetString("ending", JsonUtility.ToJson(endData));
+
+        PlayerPrefs.SetInt("FirstGame", FirstGame ? 1 : 0);
+        PlayerPrefs.SetInt("stage", stage);
+
+        PlayerPrefs.SetFloat("EffectSound_Volume", EffectSound_Volume);
+        PlayerPrefs.SetFloat("BackGroundMusic_Volume", BackGroundMusic_Volume);
+        PlayerPrefs.SetInt("SpeakSpeed", SpeakSpeed);
+        PlayerPrefs.SetInt("SpeakingAuto", SpeakingAuto ? 1 : 0);
+        PlayerPrefs.SetInt("EasyMode", EasyMode ? 1 : 0);
+
+        PlayerPrefs.Save(); // 반드시 저장
     }
-
     public void LoadData()
     {
+        // Dictionary
+        investigate_contents.Clear();
+        string invJson = PlayerPrefs.GetString("investigate_contents", "");
+        if (!string.IsNullOrEmpty(invJson))
+        {
+            InvestigateData invData = JsonUtility.FromJson<InvestigateData>(invJson);
+            for (int i = 0; i < invData.keys.Count; i++)
+            {
+                investigate_contents[invData.keys[i]] = invData.values[i];
+            }
+        }
 
+        // visitor_status
+        for (int i = 0; i < visitor_status.Length; i++)
+            visitor_status[i] = PlayerPrefs.GetInt($"visitor_status_{i}", 0);
+
+        talk_branch = PlayerPrefs.GetInt("talk_branch", 0);
+
+        // ending
+        ending.Clear();
+        string endJson = PlayerPrefs.GetString("ending", "");
+        if (!string.IsNullOrEmpty(endJson))
+        {
+            EndingData endData = JsonUtility.FromJson<EndingData>(endJson);
+            foreach (var list in endData.endings)
+                ending.Add(list.ToArray());
+        }
+
+        FirstGame = PlayerPrefs.GetInt("FirstGame", 1) == 1;
+        stage = PlayerPrefs.GetInt("stage", 0);
+
+        EffectSound_Volume = PlayerPrefs.GetFloat("EffectSound_Volume", 1f);
+        BackGroundMusic_Volume = PlayerPrefs.GetFloat("BackGroundMusic_Volume", 1f);
+        SpeakSpeed = PlayerPrefs.GetInt("SpeakSpeed", 3);
+        SpeakingAuto = PlayerPrefs.GetInt("SpeakingAuto", 0) == 1;
+        EasyMode = PlayerPrefs.GetInt("EasyMode", 0) == 1;
     }
+}
+[Serializable]
+public class InvestigateData
+{
+    public List<string> keys = new List<string>();
+    public List<string> values = new List<string>();
+}
+
+[Serializable]
+public class EndingData
+{
+    public List<List<bool>> endings = new List<List<bool>>();
 }
