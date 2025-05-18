@@ -42,15 +42,15 @@ public class Book_manager : MonoBehaviour
             "손님1", "손님2", "손님3", "손님4", "손님5", "손님6", "손님7", "손님8", "손님9"
         };
         }
-        visitor_ending.Add(new string[] { "엔딩1", "엔딩2", "엔딩3", "엔딩4", "히든 엔딩1", " 히든 엔딩2" });//손님1
-        visitor_ending.Add(new string[] { "엔딩1", "엔딩2", "엔딩3", "엔딩4", "히든 엔딩1", " 히든 엔딩2" });//손님2
-        visitor_ending.Add(new string[] { "엔딩1", "엔딩2", "엔딩3", "엔딩4", "히든 엔딩1", " 히든 엔딩2" });//손님3
-        visitor_ending.Add(new string[] { "엔딩1", "엔딩2", "엔딩3", "엔딩4", "히든 엔딩1", " 히든 엔딩2" });//손님4
-        visitor_ending.Add(new string[] { "엔딩1", "엔딩2", "엔딩3", "엔딩4", "히든 엔딩1", " 히든 엔딩2" });//손님5
-        visitor_ending.Add(new string[] { "엔딩1", "엔딩2", "엔딩3", "엔딩4", "히든 엔딩1", " 히든 엔딩2" });//손님6
-        visitor_ending.Add(new string[] { "엔딩1", "엔딩2", "엔딩3", "엔딩4", "히든 엔딩1", " 히든 엔딩2" });//손님7
-        visitor_ending.Add(new string[] { "엔딩1", "엔딩2", "엔딩3", "엔딩4", "히든 엔딩1", " 히든 엔딩2" });//손님8
-        visitor_ending.Add(new string[] { "엔딩1", "엔딩2", "엔딩3", "엔딩4", "히든 엔딩1", " 히든 엔딩2" });//손님9
+        visitor_ending.Add(new string[] { "엔딩1 name1", "엔딩2", "엔딩3", "엔딩4", "히든 엔딩1", " 히든 엔딩2" });//손님1
+        visitor_ending.Add(new string[] { "엔딩1 name2", "엔딩2", "엔딩3", "엔딩4", "히든 엔딩1", " 히든 엔딩2" });//손님2
+        visitor_ending.Add(new string[] { "엔딩1 name3", "엔딩2", "엔딩3", "엔딩4", "히든 엔딩1", " 히든 엔딩2" });//손님3
+        visitor_ending.Add(new string[] { "엔딩1 name4", "엔딩2", "엔딩3", "엔딩4", "히든 엔딩1", " 히든 엔딩2" });//손님4
+        visitor_ending.Add(new string[] { "엔딩1 name5", "엔딩2", "엔딩3", "엔딩4", "히든 엔딩1", " 히든 엔딩2" });//손님5
+        visitor_ending.Add(new string[] { "엔딩1 name6", "엔딩2", "엔딩3", "엔딩4", "히든 엔딩1", " 히든 엔딩2" });//손님6
+        visitor_ending.Add(new string[] { "엔딩1 name7", "엔딩2", "엔딩3", "엔딩4", "히든 엔딩1", " 히든 엔딩2" });//손님7
+        visitor_ending.Add(new string[] { "엔딩1 name8", "엔딩2", "엔딩3", "엔딩4", "히든 엔딩1", " 히든 엔딩2" });//손님8
+        visitor_ending.Add(new string[] { "엔딩1 name9", "엔딩2", "엔딩3", "엔딩4", "히든 엔딩1", " 히든 엔딩2" });//손님9
     }
 
 
