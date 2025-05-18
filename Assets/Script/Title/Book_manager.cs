@@ -22,8 +22,6 @@ public class Book_manager : MonoBehaviour
     [Space(20)]
     public GameObject WarningScreen;
     public List<Button> EndingSelect_button = new List<Button>();
-    [Space]
-    public Animator animator;
     [Space(20)]
     [Tooltip("다시할 때 넘어갈 씬 이름 지정하기. (어떤 손님을 선택했는지는 GameData에서 stage변수에 지정할 예정.")]
     public string Scene_name;
@@ -34,6 +32,13 @@ public class Book_manager : MonoBehaviour
     public List<Sprite> visitor_image = new List<Sprite>();
     [HideInInspector]public List<string> visitor_title = new List<string>();
     public List<string[]> visitor_ending = new List<string[]>();
+
+    [Space]
+    [Header("etc.")]
+    public Scrollbar scrollbar;
+    public Animator animator;
+
+
     void visitor_Data()//손님과 엔딩 데이터 지정
     {
         if (visitor_title == null || visitor_title.Count == 0)
@@ -66,6 +71,10 @@ public class Book_manager : MonoBehaviour
                 EndingSelect_button[i].interactable = false;
         }
         visitor_Data();
+    }
+    private void Start()
+    {
+        scrollbar.value = 1;
     }
     private void OnEnable()
     {

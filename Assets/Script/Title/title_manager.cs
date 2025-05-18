@@ -16,9 +16,6 @@ public class title_manager : MonoBehaviour
     public Button Setting_button;
     public Button Quit_button;
 
-    [Header("Scence")]
-    public string StartScene;
-    public string TutorialScene;
 
     private setting_manager setting_manager;
     private quit_manager quit_manager;
@@ -28,37 +25,31 @@ public class title_manager : MonoBehaviour
         setting_manager = gameObject.GetComponent<setting_manager>();
         quit_manager = gameObject.GetComponent<quit_manager>();
         setting_manager.apply_from_GameData();
-        //¸ğµç È­¸é ¹Ì¸® ²¨³õ±â
+        setting_manager.apply_Slider_to_Text();
+        //ëª¨ë“  í™”ë©´ ë¯¸ë¦¬ êº¼ë†“ê¸°
         Book_screen.SetActive(false);
         Setting_screen.SetActive(false);
         Quit_screen.transform.GetChild(0).gameObject.SetActive(false);
         Quit_screen.transform.GetChild(1).gameObject.SetActive(false);
     }
 
-    public void StartButton_function()
-    {
-        if (GameData.Instance.FirstGame)//Ã³À½½ÃÀÛÇßÀ» ¶§
-            SceneManager.LoadScene(TutorialScene);
-        else
-            SceneManager.LoadScene(StartScene);
-    }
 
     public void OpenAndClose_BookScreen()
     {
-        //È­¸éÀÌ ²¨Á®ÀÖÀ¸¸é Å°°í, ÄÑÁ®ÀÖÀ¸¸é ²ô±â
+        //í™”ë©´ì´ êº¼ì ¸ìˆìœ¼ë©´ í‚¤ê³ , ì¼œì ¸ìˆìœ¼ë©´ ë„ê¸°
         Book_screen.SetActive(!Book_screen.activeSelf);
     }
     public void OpenAndClose_SettingScreen()
     {
-        //È­¸éÀÌ ²¨Á®ÀÖÀ¸¸é Å°°í, ÄÑÁ®ÀÖÀ¸¸é ²ô±â
+        //í™”ë©´ì´ êº¼ì ¸ìˆìœ¼ë©´ í‚¤ê³ , ì¼œì ¸ìˆìœ¼ë©´ ë„ê¸°
         Setting_screen.SetActive(!Setting_screen.activeSelf);
         setting_manager.apply_from_GameData();
     }
     public void OpenAndClose_QuitScreen()
     {
-        //È­¸éÀÌ ²¨Á®ÀÖÀ¸¸é Å°°í, ÄÑÁ®ÀÖÀ¸¸é ²ô±â
+        //í™”ë©´ì´ êº¼ì ¸ìˆìœ¼ë©´ í‚¤ê³ , ì¼œì ¸ìˆìœ¼ë©´ ë„ê¸°
        
-        if (Quit_screen.transform.GetChild(0).gameObject.activeSelf)//È­¸éÀÌ ÄÑÁ®ÀÖÀ» ¶§
+        if (Quit_screen.transform.GetChild(0).gameObject.activeSelf)//í™”ë©´ì´ ì¼œì ¸ìˆì„ ë•Œ
         {
             Quit_screen.transform.GetChild(0).gameObject.SetActive(false);
             Quit_screen.transform.GetChild(1).gameObject.SetActive(false);
@@ -70,9 +61,14 @@ public class title_manager : MonoBehaviour
             quit_manager.animator.SetTrigger("Open");
         }
     }
-    public void QuitGame()//°ÔÀÓÁ¾·á
+    public void QuitGame()//ê²Œì„ì¢…ë£Œ
     {
-        //°ÔÀÓµ¥ÀÌÅÍ ÀúÀåÇÏ´Â ÇÔ¼ö Ãß°¡ÇÏ±â
+        GameData.Instance.SaveData();
+
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
         Application.Quit();
+#endif
     }
 }

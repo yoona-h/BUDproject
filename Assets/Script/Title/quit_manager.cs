@@ -21,9 +21,8 @@ public class quit_manager : MonoBehaviour
     }
     public void mousedown(bool selected)
     {
-        if (selected)//°ÔÀÓ Á¾·á
+        if (selected)//ê²Œìž„ ì¢…ë£Œ
         {
-            GameData.Instance.SaveData();
             title_manager.QuitGame();
         }
         else
