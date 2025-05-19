@@ -72,14 +72,11 @@ public class Book_manager : MonoBehaviour
         }
         visitor_Data();
     }
-    private void Start()
-    {
-        scrollbar.value = 1;
-    }
     private void OnEnable()
     {
         WarningScreen.transform.GetChild(0).gameObject.SetActive(false);
         WarningScreen.transform.GetChild(1).gameObject.SetActive(false);
+        scrollbar.value = 1;
     }
 
 
