@@ -34,6 +34,7 @@ public class GameData : MonoBehaviour
             Destroy(gameObject);
 
         DontDestroyOnLoad(gameObject);
+        gameObject.transform.position = Vector3.zero;
 
         LoadData();
     }
