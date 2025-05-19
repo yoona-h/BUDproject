@@ -173,7 +173,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Hanji_1_0: 722145669119466002
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
