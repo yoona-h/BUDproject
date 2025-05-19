@@ -4,23 +4,23 @@ using System.Collections.Generic;
 
 public class GameData : MonoBehaviour
 {
-    //¾À »çÀÌ¿¡¼­ Àü´ŞµÇ´Â º¯¼öµé
-    public Dictionary<string, string> investigate_contents = new Dictionary<string, string>();//Á¶»ç ³»¿ë ÀúÀå : <Á¶»çÇÑ À§Ä¡, Á¶»çÇÑ ³»¿ë>
-    public int[] visitor_status = new int[6];//¼Õ´Ô ´É·ÂÄ¡
-    public int talk_branch;//´ëÈ­ ºĞ±â
+    //ì”¬ ì‚¬ì´ì—ì„œ ì „ë‹¬ë˜ëŠ” ë³€ìˆ˜ë“¤
+    [HideInInspector] public Dictionary<string, string> investigate_contents = new Dictionary<string, string>();//ì¡°ì‚¬ ë‚´ìš© ì €ì¥ : <ì¡°ì‚¬í•œ ìœ„ì¹˜, ì¡°ì‚¬í•œ ë‚´ìš©>
+    [HideInInspector] public int[] visitor_status = new int[6];//ì†ë‹˜ ëŠ¥ë ¥ì¹˜
+    [HideInInspector] public int talk_branch;//ëŒ€í™” ë¶„ê¸°
 
 
-    //°ÔÀÓ Á¾·á ÈÄ¿¡µµ ÀúÀåµÇ´Â º¯¼öµé
-    public List<bool> ending = new List<bool>();//¿£µù ¼öÁı ¿©ºÎ
-    public bool FirstGame = true;//°ÔÀÓÀ» Ã³À½ ½ÃÀÛÇß´ÂÁö ¿©ºÎ
-    public int stage = 0;//ÇöÀç ÁøÇàµÈ ½ºÅ×ÀÌÁö. ½ºÅ×ÀÌÁö ÇÏ³ª ¿£µùÀ¸·Î º¸¸é 1¾¿ Áõ°¡½ÃÅ°±â
+    //ê²Œì„ ì¢…ë£Œ í›„ì—ë„ ì €ì¥ë˜ëŠ” ë³€ìˆ˜ë“¤
+    [HideInInspector] public List<bool[]> ending = new List<bool[]>() { new bool[6]{false, false, false, false, false, false }, new bool[6] { false, false, false, false, false, false }, new bool[6] { false, false, false, false, false, false }, new bool[6] { false, false, false, false, false, false }, new bool[6] { false, false, false, false, false, false }, new bool[6] { false, false, false, false, false, false }, new bool[6] { false, false, false, false, false, false }, new bool[6] { false, false, false, false, false, false }, new bool[6] { false, false, false, false, false, false } };//ì—”ë”© ìˆ˜ì§‘ ì—¬ë¶€ (ì–´ë–¤ ì—”ë”©ì„ ë´¤ëŠ”ì§€ë„ ì €ì¥í•˜ê¸°), ì´ì•¼ê¸°ê°€ ì–´ë””ê¹Œì§€ ì§„í–‰ë˜ì—ˆëŠ”ì§€ë„ í•´ë‹¹ ë³€ìˆ˜ë¡œ íŒë‹¨í•  ì˜ˆì •.
+    [HideInInspector] public bool FirstGame = true;//ê²Œì„ì„ ì²˜ìŒ ì‹œì‘í–ˆëŠ”ì§€ ì—¬ë¶€
+    [HideInInspector] public int stage = 0;//í˜„ì¬ ì§„í–‰ëœ ìŠ¤í…Œì´ì§€. ìŠ¤í…Œì´ì§€ í•˜ë‚˜ ì—”ë”©ìœ¼ë¡œ ë³´ë©´ 1ì”© ì¦ê°€ì‹œí‚¤ê¸°
 
-    //°¢Á¾ ¼³Á¤µé
-    public float EffectSound_Volume = 1f;//È¿°úÀ½ À½·®
-    public float BackGroundMusic_Volume = 1f;//¹è°æÀ½ÇĞ À½·®
-    public int SpeakSpeed = 3;//´ëÈ­ ¼Óµµ ¼³Á¤
-    public bool SpeakingAuto = false;//´ëÈ­ ÀÚµ¿ ³Ñ±â±â ¼³Á¤ ¿©ºÎ
-    public bool EasyMode = false;//ÀÌÁö¸ğµå »ç¿ë ¿©ºÎ
+    //ê°ì¢… ì„¤ì •ë“¤
+    [HideInInspector] public float EffectSound_Volume = 1f;//íš¨ê³¼ìŒ ìŒëŸ‰ 
+    [HideInInspector] public float BackGroundMusic_Volume = 1f;//ë°°ê²½ìŒí•™ ìŒëŸ‰
+    [HideInInspector] public int SpeakSpeed = 3;//ëŒ€í™” ì†ë„ ì„¤ì •
+    [HideInInspector] public bool SpeakingAuto = false;//ëŒ€í™” ìë™ ë„˜ê¸°ê¸° ì„¤ì • ì—¬ë¶€
+    [HideInInspector] public bool EasyMode = false;//ì´ì§€ëª¨ë“œ ì‚¬ìš© ì—¬ë¶€
 
 
     public static GameData Instance;
@@ -38,13 +38,91 @@ public class GameData : MonoBehaviour
         LoadData();
     }
 
+
+    //ì´ ì•„ë˜ëŠ” gptê°€ í•´ì¤Œ...
     public void SaveData()
     {
+        // Dictionary<string, string> -> InvestigateData(JSON)
+        InvestigateData invData = new InvestigateData();
+        foreach (var pair in investigate_contents)
+        {
+            invData.keys.Add(pair.Key);
+            invData.values.Add(pair.Value);
+        }
+        PlayerPrefs.SetString("investigate_contents", JsonUtility.ToJson(invData));
 
+        // visitor_status
+        for (int i = 0; i < visitor_status.Length; i++)
+            PlayerPrefs.SetInt($"visitor_status_{i}", visitor_status[i]);
+
+        PlayerPrefs.SetInt("talk_branch", talk_branch);
+
+        // ending (List<bool[]>ë¥¼ List<List<bool>>ìœ¼ë¡œ ë³€í™˜ í›„ ì§ë ¬í™”)
+        EndingData endData = new EndingData();
+        foreach (var arr in ending)
+            endData.endings.Add(new List<bool>(arr));
+        PlayerPrefs.SetString("ending", JsonUtility.ToJson(endData));
+
+        PlayerPrefs.SetInt("FirstGame", FirstGame ? 1 : 0);
+        PlayerPrefs.SetInt("stage", stage);
+
+        PlayerPrefs.SetFloat("EffectSound_Volume", EffectSound_Volume);
+        PlayerPrefs.SetFloat("BackGroundMusic_Volume", BackGroundMusic_Volume);
+        PlayerPrefs.SetInt("SpeakSpeed", SpeakSpeed);
+        PlayerPrefs.SetInt("SpeakingAuto", SpeakingAuto ? 1 : 0);
+        PlayerPrefs.SetInt("EasyMode", EasyMode ? 1 : 0);
+
+        PlayerPrefs.Save(); // ë°˜ë“œì‹œ ì €ì¥
     }
-
     public void LoadData()
     {
+        // Dictionary
+        investigate_contents.Clear();
+        string invJson = PlayerPrefs.GetString("investigate_contents", "");
+        if (!string.IsNullOrEmpty(invJson))
+        {
+            InvestigateData invData = JsonUtility.FromJson<InvestigateData>(invJson);
+            for (int i = 0; i < invData.keys.Count; i++)
+            {
+                investigate_contents[invData.keys[i]] = invData.values[i];
+            }
+        }
 
+        // visitor_status
+        for (int i = 0; i < visitor_status.Length; i++)
+            visitor_status[i] = PlayerPrefs.GetInt($"visitor_status_{i}", 0);
+
+        talk_branch = PlayerPrefs.GetInt("talk_branch", 0);
+
+        // ending
+        ending.Clear();
+        string endJson = PlayerPrefs.GetString("ending", "");
+        if (!string.IsNullOrEmpty(endJson))
+        {
+            EndingData endData = JsonUtility.FromJson<EndingData>(endJson);
+            foreach (var list in endData.endings)
+                ending.Add(list.ToArray());
+        }
+
+        FirstGame = PlayerPrefs.GetInt("FirstGame", 1) == 1;
+        stage = PlayerPrefs.GetInt("stage", 0);
+
+        EffectSound_Volume = PlayerPrefs.GetFloat("EffectSound_Volume", 1f);
+        BackGroundMusic_Volume = PlayerPrefs.GetFloat("BackGroundMusic_Volume", 1f);
+        SpeakSpeed = PlayerPrefs.GetInt("SpeakSpeed", 3);
+        SpeakingAuto = PlayerPrefs.GetInt("SpeakingAuto", 0) == 1;
+        EasyMode = PlayerPrefs.GetInt("EasyMode", 0) == 1;
     }
+}
+[Serializable]
+public class InvestigateData
+{
+    public List<string> keys = new List<string>();
+    public List<string> values = new List<string>();
+}
+
+[Serializable]
+public class EndingData
+{
+    public List<List<bool>> endings = new List<List<bool>>();
 }
