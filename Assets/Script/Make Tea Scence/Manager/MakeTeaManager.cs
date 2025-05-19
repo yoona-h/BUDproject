@@ -27,6 +27,8 @@ public class MakeTeaManager : MonoBehaviour
     public bool isOxidationFin = false;
     public bool isFiringFin = false;
     public bool isBrewingFin = false;
+    public bool isSelectIndredient = false;
+    public bool isOilExtraction = false;
 
     [Header("Tea Info")]
     public Color leafColor;
