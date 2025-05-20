@@ -9179,6 +9179,7 @@ MonoBehaviour:
   isOxidationFin: 0
   isFiringFin: 0
   isBrewingFin: 0
+  isSelectIndredient: 0
   isOilExtraction: 0
   leafColor: {r: 0, g: 0, b: 0, a: 0}
   oxidationTime: 0
