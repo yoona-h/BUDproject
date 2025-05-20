@@ -9,8 +9,9 @@ public class BrewingStep : MonoBehaviour
     [SerializeField] GameObject teaCup;
     [SerializeField] GameObject leaf;
     [SerializeField] GameObject oil;
+    [SerializeField] ParticleSystem smokeEffect;
 
-    public int ingredientCnt = 0;
+    int ingredientCnt = 0;
 
     MakeTeaManager makeTeaManager;
     
@@ -25,6 +26,7 @@ public class BrewingStep : MonoBehaviour
         teaPot.GetComponent<IngredientPourer>().FinPouring += FinBrewwing;
 
         teaPot.GetComponent<IngredientPourer>().enabled = false;
+        teaCup.GetComponent<Collider2D>().enabled = false;
     }
 
     void CntIngredient()
@@ -40,5 +42,6 @@ public class BrewingStep : MonoBehaviour
     {
         makeTeaManager.isBrewingFin = true;
         Debug.Log("차를 완성했습니다~");
+        teaCup.GetComponent<Collider2D>().enabled = true;
     }
 }

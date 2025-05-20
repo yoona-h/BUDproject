@@ -14,7 +14,7 @@ public class Basket : MonoBehaviour
 
     void OnMouseEnter() 
     {
-        if(!makeTeaManager.isSelectIndredient)
+        if(makeTeaManager.isSelectIndredient && !makeTeaManager.isOilExtraction)
             button.SetActive(true);
     }
 

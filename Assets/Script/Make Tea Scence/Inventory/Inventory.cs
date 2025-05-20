@@ -3,6 +3,8 @@ using UnityEngine;
 public class Inventory : MonoBehaviour
 {
     [SerializeField] GameObject oil;
+    [SerializeField] GameObject ingredient;
+    [SerializeField] Collider2D ingredientWindow;
     
     MakeTeaManager makeTeaManager;
 
@@ -17,6 +19,8 @@ public class Inventory : MonoBehaviour
     public void ExtractOil()
     {
         oil.SetActive(true);
+        ingredient.SetActive(false);
+        ingredientWindow.enabled = false;
         makeTeaManager.isOilExtraction = true;
     }
 

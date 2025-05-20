@@ -4094,6 +4094,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   oil: {fileID: 2018702942}
+  ingredient: {fileID: 1213068895}
+  ingredientWindow: {fileID: 357307667}
 --- !u!1 &531824608
 GameObject:
   m_ObjectHideFlags: 0
@@ -10059,6 +10061,7 @@ GameObject:
   - component: {fileID: 1641636649}
   - component: {fileID: 1641636652}
   - component: {fileID: 1641636650}
+  - component: {fileID: 1641636653}
   m_Layer: 0
   m_Name: Teacup
   m_TagString: Untagged
@@ -10173,6 +10176,25 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1641636653
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1641636648}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43c3ca5e7287b5d4ca0367642cc1b868, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetArea: {fileID: 1782228105}
+  isDraggable: 1
+  isReturn: 0
+  PlayAnim: 0
+  baseTransform: {fileID: 0}
+  duration: 0.3
+  isInArea: 0
 --- !u!1 &1648604628
 GameObject:
   m_ObjectHideFlags: 0
@@ -11364,6 +11386,84 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1782228104
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1782228106}
+  - component: {fileID: 1782228105}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!61 &1782228105
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1782228104}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: -2.1289372, y: 1.143318}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 2.366725, y: 4.285397}
+  m_EdgeRadius: 0
+--- !u!4 &1782228106
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1782228104}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2085606143}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1785287506
 GameObject:
   m_ObjectHideFlags: 0
@@ -12822,6 +12922,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7556115406223490098, guid: 4760e09ff9e4723418c5b99fee30d9d6, type: 3}
   m_PrefabInstance: {fileID: 2098626803042504756}
   m_PrefabAsset: {fileID: 0}
+--- !u!198 &1904201922 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 475086946158868647, guid: 4760e09ff9e4723418c5b99fee30d9d6, type: 3}
+  m_PrefabInstance: {fileID: 2098626803042504756}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1920020016
 GameObject:
   m_ObjectHideFlags: 0
@@ -13920,6 +14025,7 @@ Transform:
   - {fileID: 48184237}
   - {fileID: 1425393477}
   - {fileID: 1641636649}
+  - {fileID: 1782228106}
   - {fileID: 1781421187}
   - {fileID: 1544018933}
   - {fileID: 1904201920}
@@ -13944,7 +14050,7 @@ MonoBehaviour:
   teaCup: {fileID: 1641636648}
   leaf: {fileID: 1353234848}
   oil: {fileID: 507946544}
-  ingredientCnt: 0
+  smokeEffect: {fileID: 1904201922}
 --- !u!1 &2098372943
 GameObject:
   m_ObjectHideFlags: 0

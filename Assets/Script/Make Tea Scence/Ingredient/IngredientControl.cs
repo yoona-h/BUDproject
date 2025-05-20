@@ -11,10 +11,17 @@ public class IngredientControl : MonoBehaviour
 
     MakeTeaManager makeTeaManager;
 
+    int selectNum = 0;
+
     void Start()
     {
         // 스크립트 가져오기
         makeTeaManager = GameObject.FindWithTag("GameController").GetComponent<MakeTeaManager>();
+    }
+
+    void Update()
+    {
+        makeTeaManager.isSelectIndredient = selectNum > 0;
     }
 
     void OnMouseDown()
@@ -46,6 +53,7 @@ public class IngredientControl : MonoBehaviour
             if(ingredients[i] == null)
             {
                 ingredients[i] = obj;
+                selectNum++;
                 return true;
             }
         }
@@ -60,6 +68,7 @@ public class IngredientControl : MonoBehaviour
             {
                 ingredients[i] = null;
                 basket[i].GetComponent<SpriteRenderer>().sprite = null;
+                selectNum--;
             }
         }
     }
