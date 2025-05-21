@@ -9,7 +9,7 @@ using System.Collections;
 public class DragAreaChecker : MonoBehaviour
 {
     [Header("대상 영역 (Collider2D)")]
-    [SerializeField] Collider2D targetArea;
+    public Collider2D targetArea;
 
     [Header("드래그 가능 여부")]
     public bool isDraggable = true;

@@ -24,7 +24,7 @@ public class IngredientControl : MonoBehaviour
         makeTeaManager.isSelectIndredient = selectNum > 0;
     }
 
-    void OnMouseDown()
+    void OnMouseUpAsButton()
     {
         if(!EventSystem.current.IsPointerOverGameObject())
         {

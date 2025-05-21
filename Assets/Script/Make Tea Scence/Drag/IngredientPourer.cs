@@ -25,6 +25,8 @@ public class IngredientPourer : DragAreaChecker
 
     IEnumerator AnimateAndDestroy()
     {
+        targetArea.GetComponent<Collider2D>().enabled = false;
+
         isDraggable = false;
         if(pouringPos != null)
         {
@@ -36,6 +38,8 @@ public class IngredientPourer : DragAreaChecker
         yield return new WaitForSeconds(3.333f);
         
         FinPouring?.Invoke();
+        targetArea.GetComponent<Collider2D>().enabled = true;
+
         if(isDestroy)
         {
             Destroy(gameObject);

@@ -30,6 +30,7 @@ public class WitheringStep : MonoBehaviour
 
     [Header("재료 영역 콜라이더")]
     [SerializeField] Collider2D ingredientCollider;
+    [SerializeField] Collider2D basket;
     [SerializeField] GameObject arrows;
     
     
@@ -39,17 +40,14 @@ public class WitheringStep : MonoBehaviour
     
     int currentClick;
 
-    void OnEnable()
+    void Start()
     {
         // 스크립트 가져오기
         if(makeTeaManager == null)
             makeTeaManager = GameObject.FindWithTag("GameController").GetComponent<MakeTeaManager>();
         
+        // 초기 세팅
         text.enabled = false;
-    }
-
-    void Start()
-    {
         pluckingStep.pluckingFin += startWithering;
     }
 
@@ -61,6 +59,7 @@ public class WitheringStep : MonoBehaviour
         leafs[1].SetActive(false);
         text.enabled = true;
         arrows.SetActive(false);
+        basket.enabled = false;
         ingredientCollider.enabled = false;
         StartCoroutine(MoveTeaDry(endPos.position, 0));
     }
@@ -68,8 +67,10 @@ public class WitheringStep : MonoBehaviour
     /// <summary>
     /// 찻잎 영역 클릭 시 실행, 모두 클릭하면 장소 이동 가능
     /// </summary>
-    void OnMouseDown()
+    void OnMouseUpAsButton()
     {
+        text.text = "";
+
         if(currentClick > 0) 
         {
             currentClick--;
@@ -80,7 +81,6 @@ public class WitheringStep : MonoBehaviour
                 leafs[0].SetActive(false);
                 leafs[1].SetActive(true); // 마르고 부서진 찻잎 스프라이트
                 makeTeaManager.isPluckingAndWitheringFin = true;
-                text.enabled = false;
                 StartCoroutine(MoveTeaDry(startPos.position, waitTime));
             }
         }
@@ -107,13 +107,11 @@ public class WitheringStep : MonoBehaviour
         bool fin = makeTeaManager.isPluckingAndWitheringFin;
         ingredientCollider.enabled = fin;
         arrows.SetActive(fin);
+        basket.enabled = fin;
     }
 
     void OnDisable()
     {
         transform.position = startPos.position;
-        
-        leafs[0].SetActive(true);
-        leafs[1].SetActive(false);
     }
 }

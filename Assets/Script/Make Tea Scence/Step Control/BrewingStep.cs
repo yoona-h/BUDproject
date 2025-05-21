@@ -32,6 +32,7 @@ public class BrewingStep : MonoBehaviour
     void PlusWater()
     {
         teaPot.GetComponent<IngredientPourer>().enabled = true; // teapot 드래그 가능해짐
+        boilingWater.GetComponent<Collider2D>().enabled = false;
     }
 
     void PlusLeaf()

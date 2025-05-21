@@ -15,28 +15,26 @@ public class PluckingStep : MonoBehaviour
     [Header("클릭 수")]
     [SerializeField] int maxClick = 10;
 
-    [Header("withering 오브젝트")]
-    [SerializeField] GameObject withering;
-
     public event Action pluckingFin;
     
     MakeTeaManager makeTeaManager;
 
     int currentClick;
 
-    void OnEnable()
+    void Start()
     {
         // 스크립트 가져오기
         if(makeTeaManager == null)
             makeTeaManager = GameObject.FindWithTag("GameController").GetComponent<MakeTeaManager>();
         
+        // 초기 세팅
         currentClick = 0;
-
-        // withering.SetActive(false);
         progressSlider.gameObject.SetActive(false);
     }
 
-    void OnMouseDown() {
+    void OnMouseUpAsButton() {
+        text.text = "";
+
         if(currentClick < maxClick && !makeTeaManager.isPluckingAndWitheringFin)
         {
             Debug.Log("수확");
