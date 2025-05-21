@@ -10,6 +10,7 @@ public class FiringStep : MonoBehaviour
     [Header("UI")]
     [SerializeField] TMP_Text text;
     [SerializeField] GameObject timer;
+    [SerializeField] Button button;
 
     [Header("찻잎")]
     [SerializeField] SpriteRenderer leafSprite;
@@ -89,6 +90,7 @@ public class FiringStep : MonoBehaviour
         {
             makeTeaManager.isFiringFin = true;
             makeTeaManager.firingTime = processTime;
+            button.gameObject.SetActive(true);
         }
     }
 
