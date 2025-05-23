@@ -22,11 +22,11 @@ public class BrewingStep : MonoBehaviour
         leaf.GetComponent<IngredientPourer>().FinPouring += PlusLeaf;
         oil.GetComponent<IngredientPourer>().FinPouring += PlusOil;
         teaPot.GetComponent<IngredientPourer>().FinPouring += FinBrewwing;
-        teaCup.GetComponent<DragAreaChecker>().OnEnterArea += SwitchScene;
+        // teaCup.GetComponent<DragAreaChecker>().OnEnterArea += SwitchScene;
 
         // 초기 세팅
         teaPot.GetComponent<IngredientPourer>().enabled = false;
-        teaCup.GetComponent<DragAreaChecker>().enabled = false;
+        // teaCup.GetComponent<DragAreaChecker>().enabled = false;
     }
 
     void PlusWater()
@@ -49,7 +49,7 @@ public class BrewingStep : MonoBehaviour
     {
         makeTeaManager.isBrewingFin = true;
         teaPot.GetComponent<Collider2D>().enabled = false;
-        teaCup.GetComponent<DragAreaChecker>().enabled = true;
+        // teaCup.GetComponent<DragAreaChecker>().enabled = true;
         Debug.Log("차를 완성했습니다~");
     }
 

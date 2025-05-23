@@ -9,7 +9,8 @@ using TMPro;
 public class WitheringStep : MonoBehaviour
 {
     [Header("UI")]
-    [SerializeField] TMP_Text text;
+    [SerializeField] GameObject text;
+    [SerializeField] GameObject back;
 
     [Header("클릭 수")]
     [SerializeField] int maxClick;
@@ -47,7 +48,7 @@ public class WitheringStep : MonoBehaviour
             makeTeaManager = GameObject.FindWithTag("GameController").GetComponent<MakeTeaManager>();
         
         // 초기 세팅
-        text.enabled = false;
+        text.SetActive(false);
         pluckingStep.pluckingFin += startWithering;
     }
 
@@ -57,10 +58,10 @@ public class WitheringStep : MonoBehaviour
 
         leafs[0].SetActive(true);
         leafs[1].SetActive(false);
-        text.enabled = true;
         arrows.SetActive(false);
         basket.enabled = false;
         ingredientCollider.enabled = false;
+        back.SetActive(true);
         StartCoroutine(MoveTeaDry(endPos.position, 0));
     }
 
@@ -69,7 +70,7 @@ public class WitheringStep : MonoBehaviour
     /// </summary>
     void OnMouseUpAsButton()
     {
-        text.text = "";
+
 
         if(currentClick > 0) 
         {
@@ -81,6 +82,7 @@ public class WitheringStep : MonoBehaviour
                 leafs[0].SetActive(false);
                 leafs[1].SetActive(true); // 마르고 부서진 찻잎 스프라이트
                 makeTeaManager.isPluckingAndWitheringFin = true;
+                text.SetActive(false);
                 StartCoroutine(MoveTeaDry(startPos.position, waitTime));
             }
         }
@@ -108,6 +110,8 @@ public class WitheringStep : MonoBehaviour
         ingredientCollider.enabled = fin;
         arrows.SetActive(fin);
         basket.enabled = fin;
+        text.SetActive(!fin);
+        back.SetActive(!fin);
     }
 
     void OnDisable()

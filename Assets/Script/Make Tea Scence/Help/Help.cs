@@ -1,3 +1,4 @@
+using System;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -20,8 +21,6 @@ public class Help : MonoBehaviour
     {
         isOpen = !isOpen;
         HelpWindow.SetActive(isOpen);
-        if(isOpen) Time.timeScale = 0;
-        else Time.timeScale = 1;
+
     }
-        
 }

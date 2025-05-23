@@ -9,7 +9,7 @@ using System;
 public class PluckingStep : MonoBehaviour
 {
     [Header("UI")]
-    [SerializeField] TMP_Text text;
+    [SerializeField] GameObject text;
     [SerializeField] Slider progressSlider;
 
     [Header("클릭 수")]
@@ -33,7 +33,7 @@ public class PluckingStep : MonoBehaviour
     }
 
     void OnMouseUpAsButton() {
-        text.text = "";
+        text.SetActive(false);
 
         if(currentClick < maxClick && !makeTeaManager.isPluckingAndWitheringFin)
         {
@@ -47,7 +47,6 @@ public class PluckingStep : MonoBehaviour
             if(currentClick == maxClick)
             {
                 progressSlider.gameObject.SetActive(false);
-                text.enabled = false;
                 pluckingFin?.Invoke();
             }
         }

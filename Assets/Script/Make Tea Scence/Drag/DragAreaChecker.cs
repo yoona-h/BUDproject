@@ -2,6 +2,7 @@ using UnityEngine;
 using System;
 using UnityEngine.Timeline;
 using System.Collections;
+using System.Runtime.CompilerServices;
 
 /// <summary>
 /// 드래그 가능한 물체가 대상 영역 안에 있는지 체크
@@ -10,15 +11,19 @@ public class DragAreaChecker : MonoBehaviour
 {
     [Header("대상 영역 (Collider2D)")]
     public Collider2D targetArea;
+    // 대상영역 글로우 효과
 
     [Header("드래그 가능 여부")]
     public bool isDraggable = true;
+    
+    [Header("정지 버튼")]
+    [SerializeField] GameObject StopButton;
 
     [Header("사용 후 제자리로")]
     public bool isReturn = true;
-    [SerializeField] bool PlayAnim = false;
+    [SerializeField] bool isPlayAnim = false;
     [SerializeField] Transform baseTransform; // null이면 현재 위치로 설정됨
-    [SerializeField] float duration = 0.3f;
+    [SerializeField] float duration = 0.3f; // MoveToBasePos 시간
 
 
     public event Action OnEnterArea;
@@ -40,6 +45,9 @@ public class DragAreaChecker : MonoBehaviour
         {
             basePos = baseTransform.position;
         }
+
+        if(StopButton != null)
+            StopButton.SetActive(false);
         
     }
 
@@ -53,14 +61,6 @@ public class DragAreaChecker : MonoBehaviour
         {
             if(isInArea)
             {
-                OnExitArea?.Invoke();
-                if(isReturn)
-                {
-                    if(!PlayAnim)
-                        transform.position = basePos;
-                    else
-                        StartCoroutine(MoveToBasePos());
-                }
                 return;
             }
 
@@ -90,6 +90,8 @@ public class DragAreaChecker : MonoBehaviour
         if(isInArea)
         {
             OnEnterArea?.Invoke();
+            if(StopButton != null)
+                StopButton.SetActive(true);
         }
         else
         {
@@ -116,5 +118,21 @@ public class DragAreaChecker : MonoBehaviour
         
         transform.position = basePos;
         isDraggable = true;
+    }
+
+    public void ReturnToBasePos()
+    {
+        OnExitArea?.Invoke();
+
+        if(isPlayAnim)
+        {
+            StartCoroutine(MoveToBasePos());
+        }
+        else
+        {
+            transform.position = basePos;
+        }
+
+        StopButton.SetActive(false);
     }
 }

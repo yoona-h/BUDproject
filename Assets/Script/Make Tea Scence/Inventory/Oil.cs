@@ -30,7 +30,6 @@ public class Oil : MonoBehaviour
         }
         
         oilInven.gameObject.SetActive(true);
-        makeTeaManager.isInOliInven = true;
         Destroy(gameObject);
     }
 }

@@ -40,7 +40,7 @@ public class MakeTeaManager : MonoBehaviour
 
     [Header("Inventory")]
     public bool isInLeafInven = false;
-    public bool isInOliInven = false;
+    // public bool isInOliInven = false;
     
     void Awake()
     {

@@ -36,7 +36,7 @@ public class Inventory : MonoBehaviour
     public void FinishProcessing()
     {
         // 찻잎 가공완료 버튼 클릭 시 동작
-        if(makeTeaManager.isInOliInven)
+        if(makeTeaManager.isOilExtraction)
         {
             makeTeaManager.SetStepToBrewing(); // 오일 추출 후면 Plucking 씬으로,
         }

@@ -30,6 +30,7 @@ public class IngredientControl : MonoBehaviour
         {
             ingredientWindow.SetActive(true);
             arrows.SetActive(false);
+            GetComponent<Collider2D>().enabled = false;
             transform.parent.GetComponent<Collider2D>().enabled = false;
         }
     }
@@ -38,6 +39,7 @@ public class IngredientControl : MonoBehaviour
     {
         ingredientWindow.SetActive(false);
         arrows.SetActive(true);
+        GetComponent<Collider2D>().enabled = true;
         transform.parent.GetComponent<Collider2D>().enabled = true;
         for (int i=0; i<4; i++)
         {
