@@ -1,0 +1,7 @@
+id,type,speaker,text,next_id,stat
+1,dialogue,손님,안녕하세요.,2,
+2,choice,주인공,어서오세요.;영업끝났습니다.,3;4,3+1;3-1
+3,dialogue,손님,(.....),5,
+4,dialogue,손님,그렇군요...죄송합니다.,5,
+5,dialogue,주인공,혹시 고민이 있으신가요?,6,
+6,dialogue,손님,네...,-1,
