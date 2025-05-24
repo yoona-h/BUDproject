@@ -1,22 +1,22 @@
 fileFormatVersion: 2
-guid: 45ee9d2a2281849a0a6e6468e2d5dcc3
+guid: 4406b4cd2f1d143ef973d77ce14a01a3
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -3753437170106003512
-    second: bujeok_sheet_0
+      213: -7917439997531074592
+    second: Chaleaf_0
   - first:
-      213: 5089025855588295764
-    second: bujeok_sheet_1
+      213: -242888243138607931
+    second: Chaleaf_1
   - first:
-      213: -3838108079466024319
-    second: bujeok_sheet_2
+      213: -7582170022781303486
+    second: Chaleaf_2
   - first:
-      213: -6135981108114212149
-    second: bujeok_sheet_3
+      213: -2029707023875126842
+    second: Chaleaf_3
   - first:
-      213: -6340329380822636242
-    second: bujeok_sheet_4
+      213: 3182681290779646532
+    second: Chaleaf_4
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -151,13 +151,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: bujeok_sheet_0
+      name: Chaleaf_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 300
-        height: 340
+        width: 350
+        height: 250
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -166,20 +166,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d8e65cc42a449424fa5d001795f8070e
-      internalID: -1960683655
+      spriteID: c906b43d0683548e8a8bb70ba60e8aa2
+      internalID: -120761010
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bujeok_sheet_1
+      name: Chaleaf_1
       rect:
         serializedVersion: 2
-        x: 300
+        x: 350
         y: 0
-        width: 300
-        height: 340
+        width: 350
+        height: 250
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -188,20 +188,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c6d84001732c64a258970876783d49cd
-      internalID: 2075912133
+      spriteID: e2f1208fb37c540a9a0a2b6396c11c55
+      internalID: 701140553
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bujeok_sheet_2
+      name: Chaleaf_2
       rect:
         serializedVersion: 2
-        x: 600
+        x: 700
         y: 0
-        width: 300
-        height: 340
+        width: 350
+        height: 250
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -210,20 +210,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fcb7bb5a299504f4e9aed730c3116e19
-      internalID: 1265744859
+      spriteID: 803501c85b27941978d9b41ea07521e1
+      internalID: -1469972180
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bujeok_sheet_3
+      name: Chaleaf_3
       rect:
         serializedVersion: 2
-        x: 900
+        x: 1050
         y: 0
-        width: 300
-        height: 340
+        width: 350
+        height: 250
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -232,20 +232,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8d8cc39ed190b42409a2901f667bf1e0
-      internalID: -1306269413
+      spriteID: 778c10544eb554160b41a128eb6b80a2
+      internalID: 1040425033
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bujeok_sheet_4
+      name: Chaleaf_4
       rect:
         serializedVersion: 2
-        x: 1200
+        x: 1400
         y: 0
-        width: 300
-        height: 340
+        width: 350
+        height: 250
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -254,8 +254,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8121e5a5f2f684b5689a74f4cfa3b2cf
-      internalID: 765254965
+      spriteID: e2ee38cdc83204ab6b0c0a4b954c0174
+      internalID: 1647825421
       vertices: []
       indices: 
       edges: []
@@ -264,7 +264,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: eca52372ff2594ad2a660f22b73121f5
+    spriteID: 31fde5d9c63ee4cff9657716d4607938
     internalID: 0
     vertices: []
     indices: 
@@ -274,11 +274,11 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      bujeok_sheet_0: -1960683655
-      bujeok_sheet_1: 2075912133
-      bujeok_sheet_2: 1265744859
-      bujeok_sheet_3: -1306269413
-      bujeok_sheet_4: 765254965
+      Chaleaf_0: -120761010
+      Chaleaf_1: 701140553
+      Chaleaf_2: -1469972180
+      Chaleaf_3: 1040425033
+      Chaleaf_4: 1647825421
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
