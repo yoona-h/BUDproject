@@ -26,13 +26,12 @@ public class IngredientControl : MonoBehaviour
 
     void OnMouseUpAsButton()
     {
-        if(!EventSystem.current.IsPointerOverGameObject())
-        {
-            ingredientWindow.SetActive(true);
-            arrows.SetActive(false);
-            GetComponent<Collider2D>().enabled = false;
-            transform.parent.GetComponent<Collider2D>().enabled = false;
-        }
+        if(EventSystem.current.IsPointerOverGameObject()) return;
+      
+        ingredientWindow.SetActive(true);
+        arrows.SetActive(false);
+        GetComponent<Collider2D>().enabled = false;
+        transform.parent.GetComponent<Collider2D>().enabled = false;
     }
 
     public void CloseWindow()

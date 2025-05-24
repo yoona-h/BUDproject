@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using TMPro;
 using System;
@@ -33,6 +34,8 @@ public class PluckingStep : MonoBehaviour
     }
 
     void OnMouseUpAsButton() {
+        if(EventSystem.current.IsPointerOverGameObject()) return;
+
         text.SetActive(false);
 
         if(currentClick < maxClick && !makeTeaManager.isPluckingAndWitheringFin)
@@ -47,6 +50,7 @@ public class PluckingStep : MonoBehaviour
             if(currentClick == maxClick)
             {
                 progressSlider.gameObject.SetActive(false);
+                GetComponent<Collider2D>().enabled = false;
                 pluckingFin?.Invoke();
             }
         }

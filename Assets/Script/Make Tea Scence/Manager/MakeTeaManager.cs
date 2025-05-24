@@ -6,6 +6,7 @@ using System.Collections.Generic;
 
 public enum TeaStep { PluckingAndWithering, Oxidation, Firing, Brewing }
 public enum Stats { Hope, Courage, Peace, Wisdom, Vitality, Insight }
+public enum TeaName {녹차, 황차, 우롱차, 홍차, 흑차, 자차}
 
 public class MakeTeaManager : MonoBehaviour
 {
@@ -35,7 +36,7 @@ public class MakeTeaManager : MonoBehaviour
     public Dictionary<Stats, int> teaEffectDict;
 
     [Header("차 만들기 정보")]
-    public float oxidationTime = 0f;
+    public TeaName teaName;
     public float firingTime = 0f;
 
     [Header("Inventory")]

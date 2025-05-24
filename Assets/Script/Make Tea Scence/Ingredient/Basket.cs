@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 
 public class Basket : MonoBehaviour
@@ -10,12 +11,17 @@ public class Basket : MonoBehaviour
     {
         // 스크립트 가져오기
         makeTeaManager = GameObject.FindWithTag("GameController").GetComponent<MakeTeaManager>();
+        GetComponent<Collider2D>().enabled = false;
+    }
+
+    void Update()
+    {
+        GetComponent<Collider2D>().enabled = makeTeaManager.isSelectIndredient && !makeTeaManager.isOilExtraction;
     }
 
     void OnMouseEnter() 
     {
-        if(makeTeaManager.isSelectIndredient && !makeTeaManager.isOilExtraction)
-            button.SetActive(true);
+        button.SetActive(true);
     }
 
     void OnMouseExit() 

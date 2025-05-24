@@ -33,6 +33,7 @@ public class WitheringStep : MonoBehaviour
     [SerializeField] Collider2D ingredientCollider;
     [SerializeField] Collider2D basket;
     [SerializeField] GameObject arrows;
+    [SerializeField] GameObject jokja;
     
     
     [SerializeField] PluckingStep pluckingStep;
@@ -59,8 +60,10 @@ public class WitheringStep : MonoBehaviour
         leafs[0].SetActive(true);
         leafs[1].SetActive(false);
         arrows.SetActive(false);
+        jokja.SetActive(false);
         basket.enabled = false;
         ingredientCollider.enabled = false;
+        
         back.SetActive(true);
         StartCoroutine(MoveTeaDry(endPos.position, 0));
     }
@@ -70,8 +73,6 @@ public class WitheringStep : MonoBehaviour
     /// </summary>
     void OnMouseUpAsButton()
     {
-
-
         if(currentClick > 0) 
         {
             currentClick--;
@@ -107,9 +108,11 @@ public class WitheringStep : MonoBehaviour
         transform.position = endPos;
 
         bool fin = makeTeaManager.isPluckingAndWitheringFin;
-        ingredientCollider.enabled = fin;
+        ingredientCollider.enabled = fin && !makeTeaManager.isOilExtraction;
         arrows.SetActive(fin);
+        jokja.SetActive(fin);
         basket.enabled = fin;
+
         text.SetActive(!fin);
         back.SetActive(!fin);
     }

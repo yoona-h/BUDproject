@@ -44,11 +44,7 @@ public class DragAreaChecker : MonoBehaviour
         else
         {
             basePos = baseTransform.position;
-        }
-
-        if(StopButton != null)
-            StopButton.SetActive(false);
-        
+        }   
     }
 
     void Update()
@@ -132,7 +128,6 @@ public class DragAreaChecker : MonoBehaviour
         {
             transform.position = basePos;
         }
-
         StopButton.SetActive(false);
     }
 }
