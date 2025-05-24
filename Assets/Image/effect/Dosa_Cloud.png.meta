@@ -173,7 +173,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Dosa_Cloud_0: 3741580683003323587
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
