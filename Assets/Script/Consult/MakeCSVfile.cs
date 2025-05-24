@@ -16,15 +16,16 @@ public class MakeCSVfile
      *stat : 해당 대사가 끝나고 난 뒤에 능력치의 변화다. '능력치의 인덱스번호''+또는-''변화할 양' 을 띄어쓰기 없이 적는다.
      *      만약 type이 choice라면 선택한 선택지에 따라 ';'로 구분한다.
      *      마지막 대화에는 -1을 써서 끝났음을 표시한다.
+     *event : 해당 대사가 출력될 때 실행시킬 이벤트를 적는다. 사운드 출력, (표정 변경, 애니메이션 등)
      */
     private const string TEMPLATE =
-@"id,type,speaker,text,next_id,stat
-1,dialogue,손님,안녕하세요.,2,
-2,choice,주인공,어서오세요.;영업끝났습니다.,3;4,3+1;3-1
-3,dialogue,손님,(.....),5,
-4,dialogue,손님,그렇군요...죄송합니다.,5,
-5,dialogue,주인공,혹시 고민이 있으신가요?,6,
-6,dialogue,손님,네...,-1,";
+@"id,type,speaker,text,next_id,stat,event
+1,dialogue,손님,안녕하세요.,2,,
+2,choice,주인공,어서오세요.;영업끝났습니다.,3;4,3+1;3-1,
+3,dialogue,손님,(.....),5,,
+4,dialogue,손님,그렇군요...죄송합니다.,5,,
+5,dialogue,주인공,혹시 고민이 있으신가요?,6,,
+6,dialogue,손님,네...,-1,,";
 
     [MenuItem("Assets/Create/TalkingData CSV", false, 80)]
     public static void CreateCSV()
